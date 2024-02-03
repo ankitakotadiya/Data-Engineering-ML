@@ -63,8 +63,8 @@ Review and Create
 Crawler will take couple of minutes to run the job and once it's succes as we can see table is created.
 <img width="1090" alt="Screenshot 2024-02-03 at 12 16 41 PM" src="https://github.com/ankitakotadiya/Data-Engineering/assets/27961132/56211547-649f-4ded-abb3-11d9dc9eec1c">
 
-Phew! With our data catalog environment all set up, it's time to dive into the ETL jobs. Let the data transformation adventures begin! Creating ETL jobs offers flexibility tailored to personal preferences. Here, I'll dem<img width="1099" alt="Screenshot 2024-02-03 at 12 18 39 PM" src="https://github.com/ankitakotadiya/Data-Engineering/assets/27961132/2543cc68-1571-496e-925b-4f39a8728d15">
-onstrate two distinct methods – one utilizing SQL and the other with a Notebook approach. Choose your preferred path!
+### ETL
+Phew! With our data catalog environment all set up, it's time to dive into the ETL jobs. Let the data transformation adventures begin! Creating ETL jobs offers flexibility tailored to personal preferences. Here, I'll demonstrate two distinct methods – one utilizing SQL and the other with a Notebook approach. Choose your preferred path!
 
 <img width="1099" alt="Screenshot 2024-02-03 at 12 18 39 PM" src="https://github.com/ankitakotadiya/Data-Engineering/assets/27961132/2deb35d0-87ec-44c5-8520-aea54d400c6c">
 
@@ -88,8 +88,8 @@ After that run jon, it will take couple of minutes and your transformed data rea
 The below digram depict the complete picture of AWS Glue workflow:
 <img width="838" alt="Screenshot 2024-02-03 at 2 23 53 PM" src="https://github.com/ankitakotadiya/Data-Engineering/assets/27961132/ecd321a4-f97d-450d-978b-5072f16a5670">
 
-
-
+### ETL using Notebook
+I've uploaded a notebook demonstrating how to access data from the Glue Catalog and showcasing various PySpark methods to manipulate the data. Dive in and explore the magic of data manipulation!
 
 
 
