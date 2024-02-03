@@ -60,6 +60,36 @@ Here you can define database and setup how frequently do you want to extract the
 Review and Create
 <img width="1179" alt="Screenshot 2024-02-03 at 12 10 18 PM" src="https://github.com/ankitakotadiya/Data-Engineering/assets/27961132/4186a99c-01a0-42e9-81a4-6a22e7adf0dc">
 
+Crawler will take couple of minutes to run the job and once it's succes as we can see table is created.
+<img width="1090" alt="Screenshot 2024-02-03 at 12 16 41 PM" src="https://github.com/ankitakotadiya/Data-Engineering/assets/27961132/56211547-649f-4ded-abb3-11d9dc9eec1c">
+
+Phew! With our data catalog environment all set up, it's time to dive into the ETL jobs. Let the data transformation adventures begin! Creating ETL jobs offers flexibility tailored to personal preferences. Here, I'll dem<img width="1099" alt="Screenshot 2024-02-03 at 12 18 39 PM" src="https://github.com/ankitakotadiya/Data-Engineering/assets/27961132/2543cc68-1571-496e-925b-4f39a8728d15">
+onstrate two distinct methods – one utilizing SQL and the other with a Notebook approach. Choose your preferred path!
+
+<img width="1099" alt="Screenshot 2024-02-03 at 12 18 39 PM" src="https://github.com/ankitakotadiya/Data-Engineering/assets/27961132/2deb35d0-87ec-44c5-8520-aea54d400c6c">
+
+First select data source along with database and tables. Here in my case it is AWS Glue Catlog. 
+
+Change Schema
+In case you want to change the data type of the attributes.
+<img width="1358" alt="Screenshot 2024-02-03 at 12 20 43 PM" src="https://github.com/ankitakotadiya/Data-Engineering/assets/27961132/7d948842-ddc1-45dc-87bf-bd2227ce3235">
+
+SQL Query
+Using SQL query you can create a summary of the data or create central inventory or fact table that stores summary of the data even from multiple tables.
+<img width="1361" alt="Screenshot 2024-02-03 at 12 23 46 PM" src="https://github.com/ankitakotadiya/Data-Engineering/assets/27961132/005e2668-d27b-4a48-b48f-09a4da42ce5c">
+
+Finally define target where you want to to store your transformed data.
+Here is the visual of the ETL job.
+<img width="380" alt="Screenshot 2024-02-03 at 12 27 00 PM" src="https://github.com/ankitakotadiya/Data-Engineering/assets/27961132/93205791-225c-4477-8a41-b0e1dcf68c37">
+
+After that run jon, it will take couple of minutes and your transformed data ready in S3 bucket.
+<img width="1043" alt="Screenshot 2024-02-03 at 12 43 00 PM" src="https://github.com/ankitakotadiya/Data-Engineering/assets/27961132/1706c51a-33c8-4fa6-8831-33d9df9a420b">
+
+The below digram depict the complete picture of AWS Glue workflow:
+<img width="838" alt="Screenshot 2024-02-03 at 2 23 53 PM" src="https://github.com/ankitakotadiya/Data-Engineering/assets/27961132/ecd321a4-f97d-450d-978b-5072f16a5670">
+
+
+
 
 
 
