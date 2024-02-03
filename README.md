@@ -89,7 +89,7 @@ The below digram depict the complete picture of AWS Glue workflow:
 <img width="838" alt="Screenshot 2024-02-03 at 2 23 53 PM" src="https://github.com/ankitakotadiya/Data-Engineering/assets/27961132/ecd321a4-f97d-450d-978b-5072f16a5670">
 
 ### ETL using Notebook
-I've uploaded a notebook demonstrating how to access data from the Glue Catalog and showcasing various PySpark methods to manipulate the data. Dive in and explore the magic of data manipulation!
+I've uploaded a notebook https://github.com/ankitakotadiya/Data-Engineering/blob/main/Glue_Pyspark.ipynb demonstrating how to access data from the Glue Catalog and showcasing various PySpark methods to manipulate the data. Dive in and explore the magic of data manipulation!
 
 
 
