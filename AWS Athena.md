@@ -10,4 +10,17 @@ Athena uses the following terms to refer to hierarchies of data objects:
 * Database – a group of tables
 * Table – data organized as a group of rows or columns
 
+Sometimes these objects are also referred to with alternate but equivalent names such as the following:
+
+* A data source is sometimes referred to as a catalog.
+* A database is sometimes referred to as a schema.
+
+The following example query in the Athena console uses the awsdatacatalog data source, the default database, and the some_table table.
+<img width="815" alt="Screenshot 2024-02-04 at 6 16 49 PM" src="https://github.com/ankitakotadiya/Data-Engineering/assets/27961132/edd397d1-e4e0-4684-955d-fd2ba7f1c400">
+
+Other way is you can create a table automatically using an AWS Glue crawler.
+
+
+
+
 
