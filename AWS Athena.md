@@ -18,7 +18,10 @@ Sometimes these objects are also referred to with alternate but equivalent names
 The following example query in the Athena console uses the awsdatacatalog data source, the default database, and the some_table table.
 <img width="815" alt="Screenshot 2024-02-04 at 6 16 49 PM" src="https://github.com/ankitakotadiya/Data-Engineering/assets/27961132/edd397d1-e4e0-4684-955d-fd2ba7f1c400">
 
-Other way is you can create a table automatically using an AWS Glue crawler.
+Other way is you can create a table automatically using an AWS Glue crawler. Make sure you've setup query result location path in your s3 bucket.
+<img width="1323" alt="Screenshot 2024-02-04 at 6 40 55 PM" src="https://github.com/ankitakotadiya/Data-Engineering/assets/27961132/bdf74555-f65c-4a99-88b1-a25f4278db56">
+
+
 
 
 
