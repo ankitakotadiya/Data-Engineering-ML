@@ -53,7 +53,7 @@ To get started with Apache Spark on Amazon Athena, you must first create a Spark
 To create a Spark enabled workgroup in Athena
 1. Open the Athena console at https://console.aws.amazon.com/athena/
 2. If the console navigation pane is not visible, choose the expansion menu on the left.
-<img width="291" alt="Screenshot 2024-02-05 at 11 56 16 AM" src="https://github.com/ankitakotadiya/Data-Engineering/assets/27961132/8a575ebb-363d-4980-a7be-0d2eccb65b06">
+  <img width="291" alt="Screenshot 2024-02-05 at 11 56 16 AM" src="https://github.com/ankitakotadiya/Data-Engineering/assets/27961132/8a575ebb-363d-4980-a7be-0d2eccb65b06">
 
 3. In the navigation pane, choose Workgroups.
 4. On the Workgroups page, choose Create workgroup.
