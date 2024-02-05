@@ -1,4 +1,4 @@
-# Amazon QuickSight
+<img width="1434" alt="Screenshot 2024-02-05 at 5 08 51 PM" src="https://github.com/ankitakotadiya/Data-Engineering/assets/27961132/e566d715-3442-45c4-b1ea-965be2f8b387"># Amazon QuickSight
 Amazon QuickSight is a cloud-based business intelligence (BI) service provided by Amazon Web Services (AWS). It is designed to enable organizations to easily analyze, visualize, and share insights from their data. QuickSight allows users to create interactive dashboards, reports, and perform ad-hoc analysis, making it a powerful tool for data visualization and business intelligence.
 
 Here are some of the benefits of using Amazon QuickSight for analytics, data visualization, and reporting:
@@ -47,4 +47,12 @@ On the Choose your table screen, do the following:
 2. Choose one of the following:
    * To write a SQL query, choose Use custom SQL.
    * To choose a database and table, choose your catalog that contains your databases from the dropdown under Catalog. Then, choose a database from the dropdown under Database and choose a table from the Tables list that appears for your database.
+
+### Creating a dataset using Amazon S3 files
+In order to access the data from s3 bucket make sure you create manifest.json file which has information about files you want to access, permissions and every other necessary seetings. Once you upload the manifest file, it will load data from s3 bucket and preapare dashboard for you. I have accessed my data from s3 bucket and you can see how beautiful report has prepared.
+
+<img width="1434" alt="Screenshot 2024-02-05 at 5 08 51 PM" src="https://github.com/ankitakotadiya/Data-Engineering/assets/27961132/760bb990-5786-40f7-b351-e0ba93f51ce0">
+
+
+
 
