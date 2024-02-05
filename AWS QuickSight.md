@@ -39,12 +39,12 @@ To create a new Athena connection profile (less common), use the following steps
 * Choose Create data source.
 * (Optional) Select an IAM role ARN for queries to run as.
 
-On the Choose your table screen, do the following:
-a. For Catalog, choose one of the following:
+On the Choose your table screen, do the following: 
+1. For Catalog, choose one of the following:
    * If you are using Athena Federated Query, choose the catalog you want to use.
    * Otherwise, choose AwsDataCatalog.
      
-b. Choose one of the following:
+2. Choose one of the following:
    * To write a SQL query, choose Use custom SQL.
    * To choose a database and table, choose your catalog that contains your databases from the dropdown under Catalog. Then, choose a database from the dropdown under Database and choose a table from the Tables list that appears for your database.
 
