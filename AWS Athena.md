@@ -62,6 +62,10 @@ To create a Spark enabled workgroup in Athena
 7. For Analytics engine, choose Apache Spark.
 8. For Additional configurations, use the Use defaults setting. This option is the default and helps you get started with your Spark-enabled workgroup. With this option, Athena creates an IAM role and calculation results location in Amazon S3 for you. The name of the IAM role and the S3 bucket location to be created are displayed in the box below the Additional configurations heading.
 
+Each notebook is associated with a single Python kernel and runs Python code. A notebook can have one or more cells that contain commands. To run the cells in a notebook, you first create a session for the notebook. Sessions keep track of the variables and state of notebooks. When you no longer need the state, you can end a session. When you end a session, the notebook remains, but the variables and other state information are destroyed. 
+
+
+
 
 
 
