@@ -9,3 +9,24 @@ Here are some of the benefits of using Amazon QuickSight for analytics, data vis
 * Publish and share your analysis as a dashboard.
 * Control features available in a dashboard.
 * No need to manage granular database permissions—dashboard viewers can see only what you share.
+
+How to sign in to Amazon QuickSight
+First you have to complete signup process if you don't have any QuickSight account where it will ask you few steps about account name, region, IAM role, and email in which you want to receive notifications. Once successfully signup you will see the QuickSight dashboard below.
+<img width="1433" alt="Screenshot 2024-02-05 at 4 08 05 PM" src="https://github.com/ankitakotadiya/Data-Engineering/assets/27961132/2ef8f5b4-2a8b-4a5d-8e11-a0dc1c63fe0e">
+
+## Connecting to data in Amazon QuickSight
+People in many different roles use Amazon QuickSight to help them do analysis and advanced calculations, design data dashboards, embed analytics, and make better-informed decisions. Before any of that can happen, someone who understands your data needs to add it to QuickSight. QuickSight supports direct connections and uploads from a variety of sources.
+<img width="1090" alt="Screenshot 2024-02-05 at 4 08 21 PM" src="https://github.com/ankitakotadiya/Data-Engineering/assets/27961132/55aba1ba-af21-40b2-b587-f6b633db761a">
+
+After your data is available in QuickSight Standard edition, you can do the following:
+* Transform the dataset with field formatting, hierarchies, data type conversions, and calculations.
+* Create one or more data analyses based on your newly created dataset.
+* Share your analysis with other people so they can help design it.
+* Add charts, graphs, more datasets, and multiple pages (called sheets) to your data analysis.
+* Create visual appeal with customized formatting and themes.
+* Make them interactive by using parameters, controls, filters, and custom actions.
+* Combine data from multiple data sources, and then build new hierarchies for drilling down and calculations only available during analytics, like aggregations, window functions, and more.
+* Publish your analysis as an interactive data dashboard.
+* Share the dashboard so other people can use the dashboard, even if they don't use the analysis that it's based on.
+* Add more data to create more analyses and dashboards.
+
