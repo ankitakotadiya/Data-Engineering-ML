@@ -36,6 +36,34 @@ The workflow for using external Hive metastores from Athena includes the followi
 
 <img width="661" alt="Screenshot 2024-02-05 at 11 08 54 AM" src="https://github.com/ankitakotadiya/Data-Engineering/assets/27961132/3bdf0de0-a453-4930-9ce9-8408c492379f">
 
+### Using Amazon Athena Federated Query
+If you have data in sources other than Amazon S3, you can use Athena Federated Query to query the data in place or build pipelines that extract data from multiple data sources and store them in Amazon S3. With Athena Federated Query, you can run SQL queries across data stored in relational, non-relational, object, and custom data sources.
+
+Athena uses data source connectors that run on AWS Lambda to run federated queries. A data source connector is a piece of code that can translate between your target data source and Athena.
+
+In the vast landscape of remote repository applications, the availability of diverse connectors plays a pivotal role in seamlessly connecting data from various sources such as Document DB, Dynamo DB, Redshift, EMR, and more. This connectivity is achieved through the creation of Lambda functions, acting as bridges that facilitate the flow of data between different services.
+
+Navigating to the Athena datasource tab unveils the accessibility of these Lambda functions, providing a user-friendly interface for interacting with and querying data from a multitude of sources. 
+
+## Using Apache Spark
+Amazon Athena makes it easy to interactively run data analytics and exploration using Apache Spark without the need to plan for, configure, or manage resources. Running Apache Spark applications on Athena means submitting Spark code for processing and receiving the results directly without the need for additional configuration. You can use the simplified notebook experience in Amazon Athena console to develop Apache Spark applications using Python or Athena notebook APIs. Apache Spark on Amazon Athena is serverless and provides automatic, on-demand scaling that delivers instant-on compute to meet changing data volumes and processing requirements.
+
+To get started with Apache Spark on Amazon Athena, you must first create a Spark enabled workgroup. After you switch to the workgroup, you can create a notebook or open an existing notebook. When you open a notebook in Athena, a new session is started for it automatically and you can work with it directly in the Athena notebook editor.
+
+To create a Spark enabled workgroup in Athena
+1. Open the Athena console at https://console.aws.amazon.com/athena/
+2. If the console navigation pane is not visible, choose the expansion menu on the left.
+<img width="291" alt="Screenshot 2024-02-05 at 11 56 16 AM" src="https://github.com/ankitakotadiya/Data-Engineering/assets/27961132/8a575ebb-363d-4980-a7be-0d2eccb65b06">
+3. In the navigation pane, choose Workgroups.
+4. On the Workgroups page, choose Create workgroup.
+5. For Workgroup name, enter a name for your Apache Spark workgroup.
+6. (Optional) For Description, enter a description for your workgroup.
+7. For Analytics engine, choose Apache Spark.
+8. For Additional configurations, use the Use defaults setting. This option is the default and helps you get started with your Spark-enabled workgroup. With this option, Athena creates an IAM role and calculation results location in Amazon S3 for you. The name of the IAM role and the S3 bucket location to be created are displayed in the box below the Additional configurations heading.
+
+
+
+
 
 
 
