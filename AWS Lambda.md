@@ -117,6 +117,8 @@ The area is 42
 END RequestId: 9d4096ee-acb3-4c25-be10-8a210f0a9d8e 
 REPORT RequestId: 9d4096ee-acb3-4c25-be10-8a210f0a9d8e    Duration: 1.15 ms    Billed Duration: 2 ms    Memory Size: 128 MB    Max Memory Used: 40 MB    
 ```
+When you're finished working with the example function, delete it. You can also delete the log group that stores the function's logs, and the execution role that the console created.
+
 
 
 
