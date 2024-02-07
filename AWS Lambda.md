@@ -48,7 +48,8 @@ Lambda creates a function that returns the message Hello from Lambda! Lambda als
        return json.dumps(data)
        
    def calculate_area(length, width):
-       return length*width`
+       return length*width
+   ```
 
 
 
