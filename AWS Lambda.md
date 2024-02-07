@@ -103,6 +103,26 @@ REPORT RequestId: 2d0b1579-46fb-4bf7-a6e1-8e08840eae5b	Duration: 1.42 ms	Billed 
 Request ID
 2d0b1579-46fb-4bf7-a6e1-8e08840eae5b
 ```
+##### To view your function's invocation records in CloudWatch Logs
+1. Open the [Log groups](https://console.aws.amazon.com/cloudwatch/home#logs:) page of the CloudWatch console.
+2. Choose the log group for your function (/aws/lambda/myLambdaFunction). This is the log group name that your function printed to the console.
+3. In the Log streams tab, choose the log stream for your function's invocation.
+
+You should see output similar to the following:
+```
+INIT_START Runtime Version: python:3.12.v16    Runtime Version ARN: arn:aws:lambda:us-west-2::runtime:ca202755c87b9ec2b58856efb7374b4f7b655a0ea3deb1d5acc9aee9e297b072
+START RequestId: 9d4096ee-acb3-4c25-be10-8a210f0a9d8e Version: $LATEST
+The area is 42
+[INFO]	2023-09-01T00:05:22.464Z	9315ab6b-354a-486e-884a-2fb2972b7d84	CloudWatch logs group: /aws/lambda/myLambdaFunction
+END RequestId: 9d4096ee-acb3-4c25-be10-8a210f0a9d8e 
+REPORT RequestId: 9d4096ee-acb3-4c25-be10-8a210f0a9d8e    Duration: 1.15 ms    Billed Duration: 2 ms    Memory Size: 128 MB    Max Memory Used: 40 MB    
+```
+
+
+
+
+
+
 
 
 
