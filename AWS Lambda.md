@@ -51,6 +51,9 @@ Lambda creates a function that returns the message Hello from Lambda! Lambda als
        return length*width
    ```
 
+3. Select Deploy to update your function's code. When Lambda has deployed the changes, the console displays a banner letting you know that it's successfully updated your function.
+
+##### Understanding your function code
 
 
 
