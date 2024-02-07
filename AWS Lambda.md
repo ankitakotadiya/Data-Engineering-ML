@@ -54,6 +54,18 @@ Lambda creates a function that returns the message Hello from Lambda! Lambda als
 3. Select Deploy to update your function's code. When Lambda has deployed the changes, the console displays a banner letting you know that it's successfully updated your function.
 
 ##### Understanding your function code
+* The Lambda handler:
+  Your Lambda function contains a Python function named lambda_handler. A Lambda function in Python can contain more than one Python function, but the handler function is always the entry point to your code. When your function is invoked, Lambda runs this method.
+  
+* The Lambda event object:
+  The function lambda_handler takes two arguments, event and context. An event in Lambda is a JSON formatted document that contains data for your function to process.
+
+  If your function is invoked by another AWS service, the event object contains information about the event that caused the invocation. For example, if an Amazon Simple Storage Service (Amazon S3) bucket invokes your function when an object is uploaded, the event will contain the name of the Amazon S3 bucket and the object key.
+
+* The Lambda context object:
+* Logging in Lambda:
+
+
 
 
 
