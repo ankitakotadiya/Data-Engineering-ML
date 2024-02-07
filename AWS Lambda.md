@@ -119,6 +119,24 @@ REPORT RequestId: 9d4096ee-acb3-4c25-be10-8a210f0a9d8e    Duration: 1.15 ms    B
 ```
 When you're finished working with the example function, delete it. You can also delete the log group that stores the function's logs, and the execution role that the console created.
 
+## Deploying Lambda functions
+You can deploy code to your Lambda function by uploading a zip file archive, or by creating and uploading a container image.
+
+### .zip file archives
+A .zip file archive includes your application code and its dependencies. When you author functions using the Lambda console or a toolkit, Lambda automatically creates a .zip file archive of your code.
+
+When you create functions with the Lambda API, command line tools, or the AWS SDKs, you must create a deployment package. You also must create a deployment package if your function uses a compiled language, or to add dependencies to your function. To deploy your function's code, you upload the deployment package from Amazon Simple Storage Service (Amazon S3) or your local machine.
+
+You can upload a .zip file as your deployment package using the Lambda console, AWS Command Line Interface (AWS CLI), or to an Amazon Simple Storage Service (Amazon S3) bucket.
+
+### Container images
+You can package your code and dependencies as a container image using tools such as the Docker command line interface (CLI). You can then upload the image to your container registry hosted on Amazon Elastic Container Registry (Amazon ECR).
+
+Additionally, AWS provides a runtime interface emulator for you to test your functions locally using tools such as the Docker CLI.
+
+
+
+
 
 
 
