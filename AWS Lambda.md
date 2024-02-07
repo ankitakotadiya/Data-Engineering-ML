@@ -55,7 +55,7 @@ Lambda creates a function that returns the message Hello from Lambda! Lambda als
 
 ##### Understanding your function code
 * The Lambda handler:
-  \nYour Lambda function contains a Python function named lambda_handler. A Lambda function in Python can contain more than one Python function, but the handler function is always the entry point to your code. When your function is invoked, Lambda runs this method.
+  Your Lambda function contains a Python function named lambda_handler. A Lambda function in Python can contain more than one Python function, but the handler function is always the entry point to your code. When your function is invoked, Lambda runs this method.
   
 * The Lambda event object:
   The function lambda_handler takes two arguments, event and context. An event in Lambda is a JSON formatted document that contains data for your function to process.
@@ -63,7 +63,14 @@ Lambda creates a function that returns the message Hello from Lambda! Lambda als
   If your function is invoked by another AWS service, the event object contains information about the event that caused the invocation. For example, if an Amazon Simple Storage Service (Amazon S3) bucket invokes your function when an object is uploaded, the event will contain the name of the Amazon S3 bucket and the object key.
 
 * The Lambda context object:
+  The second argument your function takes is context. Lambda passes the context object to your function automatically. The context object contains information about the function invocation and execution environment.
+
+  You can use the context object to output information about your function's invocation for monitoring purposes. In this example, your function uses the log_group_name parameter to output the name of its CloudWatch log group.
+
 * Logging in Lambda:
+  With Python, you can use either a print statement or a Python logging library to send information to your function's log. To illustrate the difference in what's captured, the example code uses both methods. In a production application, I recommend that you use a logging library.
+
+
 
 
 
