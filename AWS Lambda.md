@@ -22,6 +22,35 @@ Lambda creates a function that returns the message Hello from Lambda! Lambda als
 
    <img width="597" alt="Screenshot 2024-02-07 at 6 38 55 AM" src="https://github.com/ankitakotadiya/Data-Engineering/assets/27961132/b22050eb-20be-4c22-877d-b50f4a6706e0">
 
+2. Paste the following code into the lambda_function.py tab, replacing the code that Lambda created.
+
+   `import json
+   import logging
+   
+   logger = logging.getLogger()
+   logger.setLevel(logging.INFO)
+   
+   def lambda_handler(event, context):
+       
+       # Get the length and width parameters from the event object. The 
+       # runtime converts the event object to a Python dictionary
+       length=event['length']
+       width=event['width']
+       
+       area = calculate_area(length, width)
+       print(f"The area is {area}")
+           
+       logger.info(f"CloudWatch logs group: {context.log_group_name}")
+       
+       # return the calculated area as a JSON string
+       data = {"area": area}
+       return json.dumps(data)
+       
+   def calculate_area(length, width):
+       return length*width`
+
+
+
 
  
 
