@@ -24,7 +24,7 @@ Lambda creates a function that returns the message Hello from Lambda! Lambda als
 
 2. Paste the following code into the lambda_function.py tab, replacing the code that Lambda created.
 
-   `import json
+   ```import json
    import logging
    
    logger = logging.getLogger()
@@ -47,7 +47,7 @@ Lambda creates a function that returns the message Hello from Lambda! Lambda als
        return json.dumps(data)
        
    def calculate_area(length, width):
-       return length*width`
+       return length*width```
 
 
 
