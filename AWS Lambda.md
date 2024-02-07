@@ -55,7 +55,7 @@ Lambda creates a function that returns the message Hello from Lambda! Lambda als
 
 ##### Understanding your function code
 * The Lambda handler:
-  Your Lambda function contains a Python function named lambda_handler. A Lambda function in Python can contain more than one Python function, but the handler function is always the entry point to your code. When your function is invoked, Lambda runs this method.
+  \nYour Lambda function contains a Python function named lambda_handler. A Lambda function in Python can contain more than one Python function, but the handler function is always the entry point to your code. When your function is invoked, Lambda runs this method.
   
 * The Lambda event object:
   The function lambda_handler takes two arguments, event and context. An event in Lambda is a JSON formatted document that contains data for your function to process.
