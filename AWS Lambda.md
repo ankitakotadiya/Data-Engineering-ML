@@ -70,6 +70,45 @@ Lambda creates a function that returns the message Hello from Lambda! Lambda als
 * Logging in Lambda:
   With Python, you can use either a print statement or a Python logging library to send information to your function's log. To illustrate the difference in what's captured, the example code uses both methods. In a production application, I recommend that you use a logging library.
 
+##### Invoke the Lambda function using the console
+To invoke your function using the Lambda console, you first create a test event to send to your function. The event is a JSON formatted document containing two key-value pairs with the keys "length" and "width".
+
+1. In the Code source pane, choose Test.
+2. Select Create new event.
+3. For Event name enter myTestEvent.
+4. In the Event JSON panel, replace the default values by pasting in the following:
+   ```
+   {
+     "length": 6,
+     "width": 7
+   }
+   ```
+5. Choose Save.
+
+##### To test your function and view invocation records in the console
+```
+Test Event Name
+myTestEvent
+
+Response
+"{\"area\": 42}"
+
+Function Logs
+START RequestId: 2d0b1579-46fb-4bf7-a6e1-8e08840eae5b Version: $LATEST
+The area is 42
+[INFO]	2023-08-31T23:43:26.428Z	2d0b1579-46fb-4bf7-a6e1-8e08840eae5b	CloudWatch logs group: /aws/lambda/myLambdaFunction
+END RequestId: 2d0b1579-46fb-4bf7-a6e1-8e08840eae5b
+REPORT RequestId: 2d0b1579-46fb-4bf7-a6e1-8e08840eae5b	Duration: 1.42 ms	Billed Duration: 2 ms	Memory Size: 128 MB	Max Memory Used: 39 MB	Init Duration: 123.74 ms
+
+Request ID
+2d0b1579-46fb-4bf7-a6e1-8e08840eae5b
+```
+
+
+
+
+
+
 
 
 
