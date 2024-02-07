@@ -7,6 +7,15 @@ To get started with Lambda, use the Lambda console to create a function. In a fe
 In this example, your function takes a JSON object containing two integer values labeled "length" and "width". The function multiplies these values to calculate an area and returns this as a JSON string. Your function also prints the calculated area.
 
 1. Open the [Functions page](https://console.aws.amazon.com/lambda/home#/functions) of the Lambda console.
+2. Choose Create function.
+3. Select Author from scratch.
+4. In the Basic information pane, for Function name enter myLambdaFunction.
+5. For Runtime, choose either Node.js 20.x or Python 3.12.
+6. Leave architecture set to x86_64 and choose Create function.
+
+Lambda creates a function that returns the message Hello from Lambda! Lambda also creates an execution role for your function. An execution role is an AWS Identity and Access Management (IAM) role that grants a Lambda function permission to access AWS services and resources. For your function, the role that Lambda creates grants basic permissions to write to CloudWatch Logs.
+
+
 
 
 
