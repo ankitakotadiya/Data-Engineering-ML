@@ -15,7 +15,7 @@ In this example, your function takes a JSON object containing two integer values
 
 Lambda creates a function that returns the message Hello from Lambda! Lambda also creates an execution role for your function. An execution role is an AWS Identity and Access Management (IAM) role that grants a Lambda function permission to access AWS services and resources. For your function, the role that Lambda creates grants basic permissions to write to CloudWatch Logs.
 
-### To modify the code in the console
+##### To modify the code in the console
 1. Choose the Code tab.
    In the console's built-in code editor, you should see the function code that Lambda created. If you don't see the lambda_function.py tab in the code editor, select 
    lambda_function.py in the file explorer as shown on the following diagram.
