@@ -37,6 +37,22 @@ The HTTP API provides an HTTP endpoint for your Lambda function. API Gateway rou
 8. Choose Create.
    <img width="1067" alt="Screenshot 2024-02-10 at 1 07 43 PM" src="https://github.com/ankitakotadiya/Data-Engineering/assets/27961132/70c066f8-7a8f-47e8-bf6f-c9641d29103a">
 
+## Step 3: Test your API
+Next, you test your API to make sure that it's working. For simplicity, use a web browser to invoke your API.
+
+### To test your API
+1. Sign in to the [API Gateway console](https://console.aws.amazon.com/apigateway).
+2. Choose your API.
+   <img width="1080" alt="Screenshot 2024-02-10 at 1 10 11 PM" src="https://github.com/ankitakotadiya/Data-Engineering/assets/27961132/e780e077-e5aa-45ae-b7c3-bae0404e5a63">
+3. Copy your API's invoke URL, and enter it in a web browser. Append the name of your Lambda function to your invoke URL to call your Lambda function. By default, the API Gateway console creates a route with the same name as your Lambda function, my-function.
+   The full URL should look like https://abcdef123.execute-api.us-east-2.amazonaws.com/my-function.
+   <img width="623" alt="Screenshot 2024-02-10 at 1 10 47 PM" src="https://github.com/ankitakotadiya/Data-Engineering/assets/27961132/9bf8b3d3-4a31-472b-b613-99d0bfac3e3e">
+
+
+
+
+
+
 
 
 
