@@ -48,6 +48,37 @@ Next, you test your API to make sure that it's working. For simplicity, use a we
    The full URL should look like https://abcdef123.execute-api.us-east-2.amazonaws.com/my-function.
    <img width="623" alt="Screenshot 2024-02-10 at 1 10 47 PM" src="https://github.com/ankitakotadiya/Data-Engineering/assets/27961132/9bf8b3d3-4a31-472b-b613-99d0bfac3e3e">
 
+## (Optional) Step 4: Clean up
+To prevent unnecessary costs, delete the resources that you created as part of this getting started exercise. The following steps delete your HTTP API, your Lambda function, and associated resources.
+
+### To delete an HTTP API
+1. Sign in to the [API Gateway console](https://console.aws.amazon.com/apigateway).
+2. On the APIs page, select an API. Choose Actions, and then choose Delete.
+3. Choose Delete.
+
+### To delete a Lambda function
+1. Sign in to the [Lambda console](https://console.aws.amazon.com/lambda).
+2. On the Functions page, select a function. Choose Actions, and then choose Delete.
+3. Choose Delete.
+
+### To delete a Lambda function's log group
+1. In the Amazon CloudWatch console, open the [Log groups page](https://console.aws.amazon.com/cloudwatch/home#logs:).
+2. On the Log groups page, select the function's log group (/aws/lambda/my-function). Choose Actions, and then choose Delete log group.
+3. Choose Delete.
+
+### To delete a Lambda function's execution role
+1. In the AWS Identity and Access Management console, open the [Roles page](https://console.aws.amazon.com/iam/home?#/roles).
+2. Select the function's role, for example, my-function-31exxmpl.
+3. Choose Delete role.
+
+
+
+
+
+
+
+
+
 
 
 
