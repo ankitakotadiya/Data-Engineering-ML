@@ -35,7 +35,7 @@ The HTTP API provides an HTTP endpoint for your Lambda function. API Gateway rou
 7. Review the stage that API Gateway creates for you, and then choose Next.
     <img width="1128" alt="Screenshot 2024-02-10 at 1 06 57 PM" src="https://github.com/ankitakotadiya/Data-Engineering/assets/27961132/69cb9572-b64f-470f-84be-10385e6bae3f">
 8. Choose Create.
-<img width="1067" alt="Screenshot 2024-02-10 at 1 07 43 PM" src="https://github.com/ankitakotadiya/Data-Engineering/assets/27961132/70c066f8-7a8f-47e8-bf6f-c9641d29103a">
+   <img width="1067" alt="Screenshot 2024-02-10 at 1 07 43 PM" src="https://github.com/ankitakotadiya/Data-Engineering/assets/27961132/70c066f8-7a8f-47e8-bf6f-c9641d29103a">
 
 
 
