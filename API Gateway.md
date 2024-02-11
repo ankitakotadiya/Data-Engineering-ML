@@ -88,6 +88,41 @@ To allow the API to invoke Amazon S3 actions, you must have the appropriate IAM 
     
 <img width="1151" alt="Screenshot 2024-02-11 at 1 40 43 PM" src="https://github.com/ankitakotadiya/Data-Engineering/assets/27961132/13a35853-b91b-4894-9e9c-0ead249aa905">
 
+### Create API resources to represent Amazon S3 resources
+1. In the same AWS Region you created your Amazon S3 bucket, create an API named MyS3. This API's root resource (/) represents the Amazon S3 service. In this step, you create two additional resources /{folder} and /{item}.
+2. Select the API's root resource, and then choose Create resource.
+3. Keep Proxy resource turned off.
+4. For Resource path, select /.
+5. For Resource name, enter {folder}.
+6. Keep CORS (Cross Origin Resource Sharing) unchecked.
+7. Choose Create resource.
+8. Select the /{folder} resource, and then choose Create resource.
+9. Use the previous steps to create a child resource of /{folder} named {item}.
+
+<img width="1085" alt="Screenshot 2024-02-11 at 12 14 56 PM" src="https://github.com/ankitakotadiya/Data-Engineering/assets/27961132/86f335af-860e-4de3-b4e3-1b2717d9b65f">
+
+### Expose an API method to list the caller's Amazon S3 buckets
+1. Select the / resource, and then choose Create method.
+2. For method type, select GET.
+3. For Integration type, select AWS service.
+4. For AWS Region, select the AWS Region where you created your Amazon S3 bucket.
+5. For AWS service, select Amazon Simple Storage Service.
+6. Keep AWS subdomain blank.
+7. For HTTP method, select GET.
+8. For Action type, select Use path override.
+9. For Path override, enter /.
+10. For Execution role, enter the role ARN for APIGatewayS3ProxyPolicy.
+11. Choose Create method.
+
+#### To test the GET / method
+1. Choose the Test tab. You might need to choose the right arrow button to show the tab.
+2. Choose Test. The result should look like the following image:
+   
+<img width="1123" alt="Screenshot 2024-02-11 at 1 50 48 PM" src="https://github.com/ankitakotadiya/Data-Engineering/assets/27961132/14a71ea9-c2ed-4dbc-a35c-4af323175830">
+
+
+
+
 
 
 
