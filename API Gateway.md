@@ -151,6 +151,47 @@ You set the {folder} path parameter in the Amazon S3 endpoint URL. You need to m
 
 <img width="1139" alt="Screenshot 2024-02-11 at 2 01 46 PM" src="https://github.com/ankitakotadiya/Data-Engineering/assets/27961132/6d71125e-bad2-4735-8bf1-a282b9d32cc5">
 
+## Expose API methods to access an Amazon S3 object in a bucket
+Amazon S3 supports GET, DELETE, HEAD, OPTIONS, POST and PUT actions to access and manage objects in a given bucket. In this tutorial, you expose a GET method on the {folder}/{item} resource to get an image from a bucket. For more applications of the {folder}/{item} resource.
+
+1. Select the /{item} resource, and then choose Create method.
+2. For method type, select GET.
+3. For Integration type, select AWS service.
+4. For AWS Region, select the AWS Region where you created your Amazon S3 bucket.
+5. For AWS service, select Amazon Simple Storage Service.
+6. Keep AWS subdomain blank.
+7. For HTTP method, select GET.
+8. For Action type, select Use path override.
+9. For Path override, enter {bucket}/{object}.
+10. For Execution role, enter the role ARN for APIGatewayS3ProxyPolicy.
+11. Choose Create method.
+
+You set the {folder} and {item} path parameters in the Amazon S3 endpoint URL. You need to map the path parameter of the method request to the path parameter of the integration request.
+
+### To map {folder} to {bucket} and {item} to {object}
+1. On the Integration request tab, under Integration request settings, choose Edit.
+2. Choose URL path parameters.
+3. Choose Add path parameter.
+4. For Name, enter bucket.
+5. For Mapped from, enter method.request.path.folder
+6. Choose Add path parameter.
+7. For Name, enter object.
+8. For Mapped from, enter method.request.path.item.
+9. Choose Save.
+
+### To test the /{folder}/{object} GET method.
+1. Choose the Test tab. You might need to choose the right arrow button to show the tab.
+2. Under Path, for folder, enter the name of your bucket.
+3. Under Path, for item, enter the name of an item.
+4. Choose Test.
+
+The response body will contain the contents of the item.
+<img width="1144" alt="Screenshot 2024-02-11 at 2 12 34 PM" src="https://github.com/ankitakotadiya/Data-Engineering/assets/27961132/5fc99fdb-b223-4f58-aa3a-e12da82f62d8">
+<img width="1135" alt="Screenshot 2024-02-11 at 2 13 29 PM" src="https://github.com/ankitakotadiya/Data-Engineering/assets/27961132/0ded49d1-8007-4716-9aea-a87a273ce1fb">
+
+
+
+
 
 
 
