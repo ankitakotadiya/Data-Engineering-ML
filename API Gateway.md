@@ -120,6 +120,37 @@ To allow the API to invoke Amazon S3 actions, you must have the appropriate IAM 
    
 <img width="1123" alt="Screenshot 2024-02-11 at 1 50 48 PM" src="https://github.com/ankitakotadiya/Data-Engineering/assets/27961132/14a71ea9-c2ed-4dbc-a35c-4af323175830">
 
+## Expose API methods to access an Amazon S3 bucket
+1. Select the /{folder} resource, and then choose Create method.
+2. For method type, select GET.
+3. For Integration type, select AWS service.
+4. For AWS Region, select the AWS Region where you created your Amazon S3 bucket.
+5. For AWS service, select Amazon Simple Storage Service.
+6. Keep AWS subdomain blank.
+7. For HTTP method, select GET.
+8. For Action type, select Use path override.
+9. For Path override, enter {bucket}.
+10. For Execution role, enter the role ARN for APIGatewayS3ProxyPolicy.
+11. Choose Create method.
+
+You set the {folder} path parameter in the Amazon S3 endpoint URL. You need to map the {folder} path parameter of the method request to the {bucket} path parameter of the integration request.
+
+### To map {folder} to {bucket}
+1. On the Integration request tab, under Integration request settings, choose Edit.
+2. Choose URL path parameters, and then choose Add path parameter.
+3. For Name, enter bucket.
+4. For Mapped from, enter method.request.path.folder. The configuration should look similar to the following:
+
+<img width="642" alt="Screenshot 2024-02-11 at 1 59 32 PM" src="https://github.com/ankitakotadiya/Data-Engineering/assets/27961132/a7594009-dae4-4c60-b266-40cbd029c599">
+5. Choose Save.
+
+### To test the /{folder} GET method.
+1. Choose the Test tab. You might need to choose the right arrow button to show the tab.
+2. Under Path, for folder, enter the name of your bucket.
+3. Choose Test.
+
+<img width="1139" alt="Screenshot 2024-02-11 at 2 01 46 PM" src="https://github.com/ankitakotadiya/Data-Engineering/assets/27961132/6d71125e-bad2-4735-8bf1-a282b9d32cc5">
+
 
 
 
