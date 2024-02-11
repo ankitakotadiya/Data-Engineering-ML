@@ -71,6 +71,27 @@ To prevent unnecessary costs, delete the resources that you created as part of t
 2. Select the function's role, for example, my-function-31exxmpl.
 3. Choose Delete role.
 
+## Expose GET on the API's root resource to list all of the Amazon S3 buckets of a caller.
+
+### Set up IAM permissions for the API to invoke Amazon S3 actions
+To allow the API to invoke Amazon S3 actions, you must have the appropriate IAM policies attached to an IAM role.
+1. Sign in to the AWS Management Console and open the [IAM console](https://console.aws.amazon.com/iam/).
+2. Choose Roles.
+3. Choose Create role.
+4. Choose AWS service under Select type of trusted entity, and then select API Gateway and select Allows API Gateway to push logs to CloudWatch Logs.
+5. Choose Next, and then choose Next.
+6. For Role name, enter APIGatewayS3ProxyPolicy, and then choose Create role.
+7. In the Roles list, choose the role you just created. You may need to scroll or use the search bar to find the role.
+8. For the selected role, select the Add permissions tab.
+9. Choose Attach policies from the dropdown list.
+10. In the search bar, enter AmazonS3FullAccess and choose Add permissions.
+    
+<img width="1151" alt="Screenshot 2024-02-11 at 1 40 43 PM" src="https://github.com/ankitakotadiya/Data-Engineering/assets/27961132/13a35853-b91b-4894-9e9c-0ead249aa905">
+
+
+
+
+
 
 
 
