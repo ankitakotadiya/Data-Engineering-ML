@@ -29,7 +29,7 @@ When data is programmatically uploaded to Amazon S3, some clients might not be c
 
 3. Create lifecycle rule.
    <img width="816" alt="Screenshot 2024-02-13 at 9 50 56 AM" src="https://github.com/ankitakotadiya/Data-Engineering/assets/27961132/5fbd3787-4a5d-4fc8-be15-a83fea4f6918">
-  
+
    <img width="809" alt="Screenshot 2024-02-13 at 9 51 09 AM" src="https://github.com/ankitakotadiya/Data-Engineering/assets/27961132/0db3bc9d-8ca6-4621-8f3b-ccf9a6727d13">
 
    <img width="808" alt="Screenshot 2024-02-13 at 9 51 20 AM" src="https://github.com/ankitakotadiya/Data-Engineering/assets/27961132/2cebd571-f8a6-4b0e-a609-5cdb3413d9ed">
