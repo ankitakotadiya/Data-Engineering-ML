@@ -56,6 +56,25 @@ For this workload, we will activate only the Deep Archive Access tier as depicte
 
    <img width="672" alt="Screenshot 2024-02-13 at 10 02 47 AM" src="https://github.com/ankitakotadiya/Data-Engineering/assets/27961132/648ea1ae-0a89-40e1-9c69-cdf6f20940e0">
 
+### Upload a File with the opt-in Deep Archive Tier Enabled
+1. If you have logged out of your AWS Management Console session, log back in. Navigate to the S3 console and select the Buckets menu option. From the list of available buckets, select the bucket name of the bucket you created.
+2. Next, select the Objects tab. Then, from within the Objects section, choose Upload.
+3. Then, choose Add files. Navigate to your local file system to locate the file you would like to upload. Select the appropriate file and then choose Open. Your file will be listed in the Files and folders section.
+   <img width="955" alt="Screenshot 2024-02-13 at 10 37 07 AM" src="https://github.com/ankitakotadiya/Data-Engineering/assets/27961132/486e3c15-afc6-4bee-82c4-a13d4c6c8fe9">
+
+4. In the Properties section, select Intelligent-Tiering. For more information about the Amazon S3 Intelligent-Tiering storage class.
+   <img width="927" alt="Screenshot 2024-02-13 at 10 38 29 AM" src="https://github.com/ankitakotadiya/Data-Engineering/assets/27961132/de5b8178-a0ce-43d1-9c4a-1158250b143a">
+
+5. Because we want the file to be archived after 6 months of no access, in the Tags – optional section we select Add tag with Key “opt-in-archive” and Value “true”, and choose Upload.
+   <img width="738" alt="Screenshot 2024-02-13 at 10 39 30 AM" src="https://github.com/ankitakotadiya/Data-Engineering/assets/27961132/7425bd6a-d989-46ff-99df-5ebc646e0f25">
+   
+
+
+   
+   
+
+
+
 
 
 
