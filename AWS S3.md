@@ -67,7 +67,47 @@ For this workload, we will activate only the Deep Archive Access tier as depicte
 
 5. Because we want the file to be archived after 6 months of no access, in the Tags – optional section we select Add tag with Key “opt-in-archive” and Value “true”, and choose Upload.
    <img width="738" alt="Screenshot 2024-02-13 at 10 39 30 AM" src="https://github.com/ankitakotadiya/Data-Engineering/assets/27961132/7425bd6a-d989-46ff-99df-5ebc646e0f25">
+
+## S3 Data Encryption
+
+### Specifying server-side encryption with Amazon S3 managed keys (SSE-S3)/Default Encryption
+All Amazon S3 buckets have encryption configured by default, and all new objects that are uploaded to an S3 bucket are automatically encrypted at rest. Server-side encryption with Amazon S3 managed keys (SSE-S3) is the default encryption configuration for every bucket in Amazon S3.
    
+### Specifying server-side encryption with AWS KMS (SSE-KMS)
+If you want to specify a different encryption type in your PUT requests, you can use server-side encryption with AWS Key Management Service (AWS KMS) keys (SSE-KMS), dual-layer server-side encryption with AWS KMS keys (DSSE-KMS), or server-side encryption with customer-provided keys (SSE-C). If you want to set a different default encryption configuration in the destination bucket, you can use SSE-KMS or DSSE-KMS.
+
+### Using dual-layer server-side encryption with AWS KMS keys (DSSE-KMS)
+Using dual-layer server-side encryption with AWS Key Management Service (AWS KMS) keys (DSSE-KMS) applies two layers of encryption to objects when they are uploaded to Amazon S3. DSSE-KMS helps you more easily fulfill compliance standards that require you to apply multilayer encryption to your data and have full control of your encryption keys.
+
+To require dual-layer server-side encryption of all objects in a particular Amazon S3 bucket, you can use a bucket policy. For example, the following bucket policy denies the upload object (s3:PutObject) permission to everyone if the request does not include an x-amz-server-side-encryption header that requests server-side encryption with DSSE-KMS.
+
+## IAM in Amazon S3
+By default, all Amazon S3 resources—buckets, objects, and related subresources (for example, lifecycle configuration and website configuration)—are private. Only the resource owner, the AWS account that created it, can access the resource. The resource owner can optionally grant access permissions to others by writing an access policy.
+
+Amazon S3 offers access policy options broadly categorized as resource-based policies and user policies. Access policies that you attach to your resources (buckets and objects) are referred to as resource-based policies. For example, bucket policies and access point policies are resource-based policies. You can also attach access policies to users in your account. These are called user policies. You can choose to use resource-based policies, user policies, or some combination of these to manage permissions to your Amazon S3 resources. You can also use access control lists (ACLs) to grant basic read and write permissions to other AWS accounts.
+
+The following access point policy grants IAM user Jane in account 123456789012 permissions to GET and PUT objects with the prefix Jane/ through the access point my-access-point in account 123456789012.
+
+```
+{
+    "Version":"2012-10-17",
+    "Statement": [
+    {
+        "Effect": "Allow",
+        "Principal": {
+            "AWS": "arn:aws:iam::123456789012:user/Jane"
+        },
+        "Action": ["s3:GetObject", "s3:PutObject"],
+        "Resource": "arn:aws:s3:us-west-2:123456789012:accesspoint/my-access-point/object/Jane/*"
+    }]
+}
+```
+
+### When to use an ACL-based access policy (bucket and object ACLs)
+S3 Object Ownership is an Amazon S3 bucket-level setting that you can use to both control ownership of the objects that are uploaded to your bucket and to disable or enable ACLs. By default, Object Ownership is set to the Bucket owner enforced setting, and all ACLs are disabled. When ACLs are disabled, the bucket owner owns all the objects in the bucket and manages access to them exclusively by using access-management policies.
+
+
+
 
 
    
