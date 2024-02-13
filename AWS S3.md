@@ -28,13 +28,13 @@ When data is programmatically uploaded to Amazon S3, some clients might not be c
    <img width="1085" alt="Screenshot 2024-02-13 at 9 49 27 AM" src="https://github.com/ankitakotadiya/Data-Engineering/assets/27961132/896f0feb-5edc-4d47-8304-d094b767f473">
 
 3. Create lifecycle rule.
-  <img width="816" alt="Screenshot 2024-02-13 at 9 50 56 AM" src="https://github.com/ankitakotadiya/Data-Engineering/assets/27961132/5fbd3787-4a5d-4fc8-be15-a83fea4f6918">
+   <img width="816" alt="Screenshot 2024-02-13 at 9 50 56 AM" src="https://github.com/ankitakotadiya/Data-Engineering/assets/27961132/5fbd3787-4a5d-4fc8-be15-a83fea4f6918">
   
-  <img width="809" alt="Screenshot 2024-02-13 at 9 51 09 AM" src="https://github.com/ankitakotadiya/Data-Engineering/assets/27961132/0db3bc9d-8ca6-4621-8f3b-ccf9a6727d13">
+   <img width="809" alt="Screenshot 2024-02-13 at 9 51 09 AM" src="https://github.com/ankitakotadiya/Data-Engineering/assets/27961132/0db3bc9d-8ca6-4621-8f3b-ccf9a6727d13">
 
-  <img width="808" alt="Screenshot 2024-02-13 at 9 51 20 AM" src="https://github.com/ankitakotadiya/Data-Engineering/assets/27961132/2cebd571-f8a6-4b0e-a609-5cdb3413d9ed">
+   <img width="808" alt="Screenshot 2024-02-13 at 9 51 20 AM" src="https://github.com/ankitakotadiya/Data-Engineering/assets/27961132/2cebd571-f8a6-4b0e-a609-5cdb3413d9ed">
 
-  <img width="825" alt="Screenshot 2024-02-13 at 9 51 31 AM" src="https://github.com/ankitakotadiya/Data-Engineering/assets/27961132/2528658a-b22e-4ce5-aeef-17c119b2c73b">
+   <img width="825" alt="Screenshot 2024-02-13 at 9 51 31 AM" src="https://github.com/ankitakotadiya/Data-Engineering/assets/27961132/2528658a-b22e-4ce5-aeef-17c119b2c73b">
 
 ### Activate the Amazon S3 Intelligent-Tiering Optional Asynchronous Archive Tiers
 To save even more on data that doesn’t require immediate retrieval, you can activate the optional asynchronous Archive Access and Deep Archive Access tiers. When these tiers are activated, objects not accessed for 90 consecutive days are automatically moved directly to the Archive Access tier with up to 71% in storage cost savings. Objects are then moved to the Deep Archive Access tier after 180 consecutive days of no access with up to 95% in storage cost savings.
