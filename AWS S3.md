@@ -6,18 +6,16 @@ Amazon S3 offers a range of storage classes designed for different use cases. Fo
 ## S3 Storage Class
 Amazon S3 (Simple Storage Service) provides several storage classes, each designed to optimize cost, performance, and durability based on different data access patterns and retention requirements. Here's an overview of the commonly used Amazon S3 storage classes:
 
-| Storage class | Designed for | Availability Zones | Min storage duration | Min billable object size | Retrieval fees |
-------------------------------------------------------------------------------------------------------------------------
+| Storage class                                 | Designed for                                                                                                          | Availability Zones | Min storage duration | Min billable object size | Monitoring and auto-tiering fees            | Retrieval fees    |   |
+|-----------------------------------------------|-----------------------------------------------------------------------------------------------------------------------|--------------------|----------------------|--------------------------|---------------------------------------------|-------------------|---|
+| Standard                                      | Frequently accessed data (more than once a month) with milliseconds access                                            | ≥ 3                | -                    | -                        | -                                           | -                 |   |
+| Intelligent-Tiering                           | Data with changing or unknown access patterns                                                                         | ≥ 3                | -                    | -                        | Per-object fees apply for objects >= 128 KB | -                 |   |
+| Standard-IA                                   | Infrequently accessed data (once a month) with milliseconds access                                                    | ≥ 3                | 30 days              | 128 KB                   | -                                           | Per-GB fees apply |   |
+| One Zone-IA                                   | Recreatable infrequently accessed data (once a month) stored in a single Availability Zone with milliseconds access   | 1                  | 30 days              | 128 KB                   | -                                           | Per-GB fees apply |   |
+| Glacier Instant Retrieval                     | Long-lived archive data accessed once a quarter with instant retrieval in milliseconds                                | ≥ 3                | 90 days              | 128 KB                   | -                                           | Per-GB fees apply |   |
+| Glacier Flexible Retrieval (formerly Glacier) | Long-lived archive data accessed once a year with retrieval of minutes to hours                                       | ≥ 3                | 90 days              | -                        | -                                           | Per-GB fees apply |   |
+| Glacier Deep Archive                          | Long-lived archive data accessed less than once a year with retrieval of hours                                        | ≥ 3                | 180 days             | -                        | -                                           | Per-GB fees apply |   |
+| Reduced redundancy                            | Noncritical frequently accessed data with milliseconds access (not recommended as S3 Standard is more cost effective) | ≥ 3                | -                    | -                        | -                                           | Per-GB fees apply |   |
 
-	
-
-Standard	Frequently accessed data (more than once a month) with milliseconds access	≥ 3	-	-	-	-
-Intelligent-Tiering	Data with changing or unknown access patterns	≥ 3	-	-	Per-object fees apply for objects >= 128 KB	-
-Standard-IA	Infrequently accessed data (once a month) with milliseconds access	≥ 3	30 days	128 KB	-	Per-GB fees apply
-One Zone-IA	Recreatable, infrequently accessed data (once a month) stored in a single Availability Zone with milliseconds access	1	30 days	128 KB	-	Per-GB fees apply
-Glacier Instant Retrieval	Long-lived archive data accessed once a quarter with instant retrieval in milliseconds	≥ 3	90 days	128 KB	-	Per-GB fees apply
-Glacier Flexible Retrieval (formerly Glacier)	Long-lived archive data accessed once a year with retrieval of minutes to hours	≥ 3	90 days	-	-	Per-GB fees apply
-Glacier Deep Archive	Long-lived archive data accessed less than once a year with retrieval of hours	≥ 3	180 days	-	-	Per-GB fees apply
-Reduced redundancy	Noncritical, frequently accessed data with milliseconds access (not recommended as S3 Standard is more cost effective)	≥ 3	-	-	-	Per-GB fees apply
 
 
