@@ -95,6 +95,12 @@ After you launch a cluster, you can submit work to the running cluster to proces
      --data_source s3://DOC-EXAMPLE-BUCKET/food_establishment_data.csv
      --output_uri s3://DOC-EXAMPLE-BUCKET/myOutputFolder						
      ```
+   * For Action if step fails, accept the default option Continue. This way, if the step fails, the cluster continues to run.
+4. Choose Add to submit the step. The step should appear in the console with a status of Pending.
+5. Monitor the step status. It should change from Pending to Running to Completed. To refresh the status in the console, choose the refresh icon to the right of Filter. The script takes about one minute to run. When the status changes to Completed, the step has completed successfully.
+
+
+	
 
 
 
