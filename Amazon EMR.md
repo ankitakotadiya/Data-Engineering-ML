@@ -12,6 +12,7 @@ When you use Amazon EMR, you can choose from a variety of file systems to store 
 ### Prepare an application with input data for Amazon EMR
 The most common way to prepare an application for Amazon EMR is to upload the application and its input data to Amazon S3. Then, when you submit work to your cluster you specify the Amazon S3 locations for your script and data.
 ##### To prepare the example PySpark script for EMR
+1. Copy the example code below into a new file in your editor of choice. I have used Visual Studio Code. 
 
 ```
 import argparse
@@ -55,4 +56,18 @@ if __name__ == "__main__":
     calculate_red_violations(args.data_source, args.output_uri)
 			
 ```
+2. Save the file as health_violations.py.
+3. Upload health_violations.py to Amazon S3 into the bucket you created for this tutorial.
+
+##### To prepare the sample input data for EMR
+1. Download the zip file, [food_establishment_data.zip](https://docs.aws.amazon.com/emr/latest/ManagementGuide/samples/food_establishment_data.zip).
+2. Unzip and save food_establishment_data.zip as food_establishment_data.csv on your machine.
+3. Upload the CSV file to the S3 bucket that you created for this tutorial.
+
+### Launch an Amazon EMR cluster
+
+
+
+
+
 
