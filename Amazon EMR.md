@@ -65,6 +65,37 @@ if __name__ == "__main__":
 3. Upload the CSV file to the S3 bucket that you created for this tutorial.
 
 ### Launch an Amazon EMR cluster
+After you prepare a storage location and your application, you can launch a sample Amazon EMR cluster.
+
+1. Under EMR on EC2 in the left navigation pane, choose Clusters, and then choose Create cluster.
+2. On the Create Cluster page, note the default values for Release, Instance type, Number of instances, and Permissions. These fields automatically populate with values that work for general-purpose clusters.
+3. In the Cluster name field, enter a unique cluster name to help you identify your cluster, such as My first cluster. Your cluster name can't contain the characters <, >, $, |, or ` (backtick).
+4. Under Applications, choose the Spark option to install Spark on your cluster.
+5. Under Cluster logs, select the Publish cluster-specific logs to Amazon S3 check box. Replace the Amazon S3 location value with the Amazon S3 bucket you created, followed by /logs. For example, s3://DOC-EXAMPLE-BUCKET/logs. Adding /logs creates a new folder called 'logs' in your bucket, where Amazon EMR can copy the log files of your cluster.
+6. Under Security configuration and permissions, choose your EC2 key pair. In the same section, select the Service role for Amazon EMR dropdown menu and choose EMR_DefaultRole. Then, select the IAM role for instance profile dropdown menu and choose EMR_EC2_DefaultRole.
+7. Choose Create cluster to launch the cluster and open the cluster details page.
+8. Find the cluster Status next to the cluster name. The status changes from Starting to Running to Waiting as Amazon EMR provisions the cluster. You may need to choose the refresh icon on the right or refresh your browser to see status updates.
+
+Your cluster status changes to Waiting when the cluster is up, running, and ready to accept work.
+
+## Step 2: Manage your Amazon EMR cluster
+### Submit work to Amazon EMR
+After you launch a cluster, you can submit work to the running cluster to process and analyze data. You submit work to an Amazon EMR cluster as a step. A step is a unit of work made up of one or more actions. For example, you might submit a step to compute values, or to transfer and process data. You can submit steps when you create a cluster, or to a running cluster. In this part of the tutorial, you submit health_violations.py as a step to your running cluster.
+
+1. Under EMR on EC2 in the left navigation pane, choose Clusters, and then select the cluster where you want to submit work. The cluster state must be Waiting.
+2. Choose the Steps tab, and then choose Add step.
+3. Configure the step according to the following guidelines:
+   * For Type, choose Spark application. You should see additional fields for Deploy mode, Application location, and Spark-submit options.
+   * For Name, enter a new name. If you have many steps in a cluster, naming each step helps you keep track of them.
+   * For Deploy mode, leave the default value Cluster mode. For more information on Spark deployment modes.
+   * For Application location, enter the location of your health_violations.py script in Amazon S3, such as s3://DOC-EXAMPLE-BUCKET/health_violations.py.
+   * Leave the Spark-submit options field empty.
+   * In the Arguments field, enter the following arguments and values:
+     ```
+     --data_source s3://DOC-EXAMPLE-BUCKET/food_establishment_data.csv
+     --output_uri s3://DOC-EXAMPLE-BUCKET/myOutputFolder						
+     ```
+
 
 
 
