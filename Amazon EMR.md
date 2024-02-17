@@ -99,6 +99,100 @@ After you launch a cluster, you can submit work to the running cluster to proces
 4. Choose Add to submit the step. The step should appear in the console with a status of Pending.
 5. Monitor the step status. It should change from Pending to Running to Completed. To refresh the status in the console, choose the refresh icon to the right of Filter. The script takes about one minute to run. When the status changes to Completed, the step has completed successfully.
 
+### View results
+To view the results of health_violations.py
+1. Choose the Bucket name and then the output folder that you specified when you submitted the step. For example, DOC-EXAMPLE-BUCKET and then myOutputFolder.
+2. Verify that the following items appear in your output folder:
+   * A small-sized object called _SUCCESS.
+   * A CSV file starting with the prefix part- that contains your results.
+3. Choose the object with your results, then choose Download to save the results to your local file system.
+
+##### The following is an example of health_violations.py results.
+```
+name, total_red_violations
+SUBWAY, 322
+T-MOBILE PARK, 315
+WHOLE FOODS MARKET, 299
+PCC COMMUNITY MARKETS, 251
+TACO TIME, 240
+MCDONALD'S, 177
+THAI GINGER, 153
+SAFEWAY INC #1508, 143
+TAQUERIA EL RINCONSITO, 134
+HIMITSU TERIYAKI, 128
+```
+
+## Step 3: Clean up your Amazon EMR resources
+### Terminate your cluster
+Now that you've submitted work to your cluster and viewed the results of your PySpark application, you can terminate the cluster. Terminating a cluster stops all of the cluster's associated Amazon EMR charges and Amazon EC2 instances.
+
+## Amazon EMR Studio
+Amazon EMR Studio is a web-based integrated development environment (IDE) for fully managed Jupyter notebooks that run on Amazon EMR clusters. You can set up an EMR Studio for your team to develop, visualize, and debug applications written in R, Python, Scala, and PySpark. EMR Studio is integrated with AWS Identity and Access Management (IAM) and IAM Identity Center so users can log in using their corporate credentials.
+
+##### Key features of EMR Studio
+* Authenticate users with AWS Identity and Access Management (IAM), or with AWS IAM Identity Center with or without trusted identity propagation and your enterprise identity provider.
+* Access and launch Amazon EMR clusters on-demand to run Jupyter Notebook jobs.
+* Connect to Amazon EMR on EKS clusters to submit work as job runs.
+* Explore and save example notebooks. For more information about example notebooks, see the [EMR Studio Notebook examples GitHub repository](https://github.com/aws-samples/emr-studio-notebook-examples).
+* Analyze data using Python, PySpark, Spark Scala, Spark R, or SparkSQL, and install custom kernels and libraries.
+* Collaborate in real time with other users in the same Workspace.
+* Use the EMR Studio SQL Explorer to browse your data catalog, run SQL queries, and download results before you work with the data in a notebook.
+* Run parameterized notebooks as part of scheduled workflows with an orchestration tool such as Apache Airflow or Amazon Managed Workflows for Apache Airflow. For more information, see Orchestrating analytics jobs on EMR Notebooks using [MWAA](https://aws.amazon.com/blogs/big-data/orchestrating-analytics-jobs-on-amazon-emr-notebooks-using-amazon-mwaa/) in the AWS Big Data Blog.
+* Link code repositories such as GitHub and BitBucket.
+* Track and debug jobs using the Spark History Server, Tez UI, or YARN timeline server.
+
+### Create an EMR Studio
+1. Open the Amazon [EMR console](https://console.aws.amazon.com/emr).
+2. Under EMR Studio on the left navigation, choose Getting started. You can also create a new Studio from the Studios page.
+3. Amazon EMR provides default settings for you if you're creating a EMR Studio for interactive workloads, but you can edit these settings. Configurable settings include the EMR Studio's name, the S3 location for your Workspace, the service role to use, the Workspace(s) you want to use, EMR Serverless application name, and the associated runtime role.
+4. Choose Create Studio and launch Workspace to finish and navigate to the Studios page. Your new Studio appears in the list with details such as Studio name, Creation date, and Studio access URL. Your Workspace opens in a new tab in your browser.
+
+### Create EMR Notebooks
+You can use Amazon EMR Notebooks along with Amazon EMR clusters running Apache Spark to create and open Jupyter Notebook and JupyterLab interfaces within the Amazon EMR console. An EMR notebook is a "serverless" notebook that you can use to run queries and code.
+
+1. Open the [Amazon EMR console](https://console.aws.amazon.com/elasticmapreduce/).
+2. Choose Notebooks, Create notebook.
+3. Enter a Notebook name and an optional Notebook description.
+4. If you have an active cluster to which you want to attach the notebook, leave the default Choose an existing cluster selected, click Choose, select a cluster from the list, and then click Choose cluster. For information about cluster requirements for EMR Notebooks, see Considerations when using EMR Notebooks.
+   —or—
+   Choose Create a cluster, enter a Cluster name and choose options according to the following guidelines. The cluster is created in the default VPC for the account using On-Demand instances.
+5. For Security groups, choose Use default security groups. Alternatively, choose Choose security groups and select custom security groups that are available in the VPC of the cluster. You select one for the primary instance and another for the notebook client instance.
+6. For AWS Service Role, leave the default or choose a custom role from the list. The client instance for the notebook uses this role.
+7. For Notebook location choose the location in Amazon S3 where the notebook file is saved, or specify your own location. If the bucket and folder don't exist, Amazon EMR creates it.
+   Amazon EMR creates a folder with the Notebook ID as folder name, and saves the notebook to a file named NotebookName.ipynb. For example, if you specify the Amazon S3 location s3://MyBucket/MyNotebooks for a notebook named MyFirstEMRManagedNotebook, the notebook file is saved to s3://MyBucket/MyNotebooks/NotebookID/MyFirstEMRManagedNotebook.ipynb.
+   If you specify an encrypted location in Amazon S3, you must set up the Service role for EMR Notebooks as a key user. The default service role is EMR_Notebooks_DefaultRole. If you are using an AWS KMS key for encryption, see Using key policies in AWS KMS in the AWS Key Management Service Developer Guide and the support article for adding key users.
+8. Optionally, if you have added a Git-based repository to Amazon EMR that you want to associate with this notebook, choose Git repository, select Choose repository and then select a repository from the list.
+9. Optionally, choose Tags, and then add any additional key-value tags for the notebook.
+10. Choose Create Notebook.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	
 
