@@ -159,11 +159,13 @@ You can use Amazon EMR Notebooks along with Amazon EMR clusters running Apache S
 5. For Security groups, choose Use default security groups. Alternatively, choose Choose security groups and select custom security groups that are available in the VPC of the cluster. You select one for the primary instance and another for the notebook client instance.
 6. For AWS Service Role, leave the default or choose a custom role from the list. The client instance for the notebook uses this role.
 7. For Notebook location choose the location in Amazon S3 where the notebook file is saved, or specify your own location. If the bucket and folder don't exist, Amazon EMR creates it.
+   
    Amazon EMR creates a folder with the Notebook ID as folder name, and saves the notebook to a file named NotebookName.ipynb. For example, if you specify the Amazon S3 location s3://MyBucket/MyNotebooks for a notebook named MyFirstEMRManagedNotebook, the notebook file is saved to s3://MyBucket/MyNotebooks/NotebookID/MyFirstEMRManagedNotebook.ipynb.
+   
    If you specify an encrypted location in Amazon S3, you must set up the Service role for EMR Notebooks as a key user. The default service role is EMR_Notebooks_DefaultRole. If you are using an AWS KMS key for encryption, see Using key policies in AWS KMS in the AWS Key Management Service Developer Guide and the support article for adding key users.
-8. Optionally, if you have added a Git-based repository to Amazon EMR that you want to associate with this notebook, choose Git repository, select Choose repository and then select a repository from the list.
-9. Optionally, choose Tags, and then add any additional key-value tags for the notebook.
-10. Choose Create Notebook.
+9. Optionally, if you have added a Git-based repository to Amazon EMR that you want to associate with this notebook, choose Git repository, select Choose repository and then select a repository from the list.
+10. Optionally, choose Tags, and then add any additional key-value tags for the notebook.
+11. Choose Create Notebook.
 
 
 
