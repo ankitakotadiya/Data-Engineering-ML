@@ -32,10 +32,9 @@ Amazon SageMaker Studio Classic is a web-based, integrated development environme
 * Deploy the models and monitor the performance of their predictions.
 * Track and debug the machine learning experiments.
 
-### Studio Classic Features
 Studio Classic includes the following features:
 
-#### SageMaker Autopilot
+### SageMaker Autopilot
 Autopilot performs the following key tasks that you can use on autopilot or with various degrees of human guidance:
 
 * Data analysis and preprocessing: Autopilot identifies your specific problem type, handles missing values, normalizes your data, selects features, and overall prepares the data for model training.
@@ -86,7 +85,56 @@ Autopilot supports tabular data formatted as CSV files or as Parquet files.
       6. Tags – Tags are an array of key-value pairs. Use tags to categorize your resources from AWS services, such as their purpose, owner, or environment.
 11. Select Create experiment.The creation of the experiment starts an Autopilot job in SageMaker. Autopilot provides the status of the experiment, information on the data exploration process and model candidates in notebooks, a list of generated models and their reports, and the job profile used to create them.
 
-Please find the [Amazon Autopilot](https://github.com/ankitakotadiya/Data-Engineering-ML/tree/main/sam-app/lambda-python3.11) demo here.
+Please find the [SageMaker Autopilot](https://github.com/ankitakotadiya/Data-Engineering-ML/tree/main/sam-app/lambda-python3.11) demo here.
+
+### SageMaker JumpStart
+SageMaker JumpStart provides pretrained, open-source models for a wide range of problem types to help you get started with machine learning. You can incrementally train and tune these models before deployment. JumpStart also provides solution templates that set up infrastructure for common use cases, and executable example notebooks for machine learning with SageMaker.
+
+You can also access pretrained models, solution templates, and examples through the JumpStart landing page in Amazon SageMaker Studio Classic.
+
+<img width="573" alt="Screenshot 2024-02-21 at 6 05 03 PM" src="https://github.com/ankitakotadiya/Data-Engineering-ML/assets/27961132/9fa859d2-3f05-4b70-bd7b-e01d4ccd86c7">
+
+From the SageMaker JumpStart landing page in Studio, you can explore model hubs from providers of both proprietary and publicly available models.
+
+<img width="574" alt="Screenshot 2024-02-21 at 6 06 11 PM" src="https://github.com/ankitakotadiya/Data-Engineering-ML/assets/27961132/73775543-cab1-44a1-85de-5f954e25b4fa">
+
+If you have already onboarded to a SageMaker domain, you can update your domain to generate the default roles using the following procedure.
+1. Open the Amazon [SageMaker console](https://console.aws.amazon.com/sagemaker/).
+2. Choose Control Panel at the top left of the page.
+3. From the Domain page, choose the Settings icon to edit the domain settings.
+4. On General Settings choose Next.
+5. Under SageMaker Projects and JumpStart, select Enable Amazon SageMaker project templates and Amazon SageMaker JumpStart for this account and Enable Amazon SageMaker project templates and Amazon SageMaker JumpStart for Studio Classic users, choose Next.
+6. Select Submit.
+
+Amazon SageMaker JumpStart provides access to hundreds of publicly available and proprietary foundation models from third-party sources and partners. You can explore the JumpStart foundation model selection directly in the SageMaker console, Studio, or Studio Classic.
+
+For fine-tuning models that require the acceptance of an end-user license agreement, you must explicitly declare EULA acceptance when defining your JumpStart estimator. Note that after fine-tuning a pretrained model, the weights of the original model are changed, so you do not need to later accept a EULA when deploying the fine-tuned model.
+
+#### Customize a foundation model
+The recommended way to first customize a foundation model to a specific use case is through prompt engineering. Providing your foundation model with well-engineered, context-rich prompts can help achieve desired results without any fine-tuning or changing of model weights. For more information.
+
+#### Prompt engineering for foundation models
+Prompt engineering is the process of designing and refining the prompts or input stimuli for a language model to generate specific types of output. Prompt engineering involves selecting appropriate keywords, providing context, and shaping the input in a way that encourages the model to produce the desired response and is a vital technique to actively shape the behavior and output of foundation models.
+
+##### Zero-shot learning
+Zero-shot learning involves training a model to generalize and make predictions on unseen classes or tasks. To perform prompt engineering in zero-shot learning environments, we recommend constructing prompts that explicitly provide information about the target task and the desired output format. For example, if you want to use a foundation model for zero-shot text classification on a set of classes that the model did not see during training, a well-engineered prompt could be: "Classify the following text as either sports, politics, or entertainment: (input text)." By explicitly specifying the target classes and the expected output format, you can guide the model to make accurate predictions even on unseen classes.
+
+##### Few-shot learning
+Few-shot learning involves training a model with a limited amount of data for new classes or tasks. Prompt engineering in few-shot learning environments focuses on designing prompts that effectively use the limited available training data. For example, if you use a foundation model for an image classification task and only have a few examples of a new image class, you can engineer a prompt that includes the available labeled examples with a placeholder for the target class. For example, the prompt could be: "[image 1], [image 2], and [image 3] are examples of (target class). Classify the following image as (target class)".
+
+#### Fine-tune a foundation model
+Foundation models are computationally expensive and trained on a large, unlabeled corpus. Fine-tuning a pre-trained foundation model is an affordable way to take advantage of their broad capabilities while customizing a model on your own small, corpus. Fine-tuning is a customization method that involved further training and does change the weights of your model.
+
+
+
+
+
+
+
+
+
+
+
 
 
 
