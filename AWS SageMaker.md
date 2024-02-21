@@ -125,6 +125,15 @@ Few-shot learning involves training a model with a limited amount of data for ne
 #### Fine-tune a foundation model
 Foundation models are computationally expensive and trained on a large, unlabeled corpus. Fine-tuning a pre-trained foundation model is an affordable way to take advantage of their broad capabilities while customizing a model on your own small, corpus. Fine-tuning is a customization method that involved further training and does change the weights of your model.
 
+#### Evaluate a text generation foundation model in Studio
+Amazon SageMaker JumpStart has integrations with SageMaker Clarify Foundation Model Evaluations (FMEval) in Studio. If a JumpStart model has built-in evaluation capabilities available, you can choose Evaluate in the upper right corner of the model detail page in the JumpStart Studio UI. For more information on navigating the JumpStart Studio UI.
+
+Use Amazon SageMaker JumpStart to evaluate text-based foundation models with FMEval. You can use these model evaluations to compare model quality and responsibility metrics for one model, between two models, or between different versions of the same model, to help you quantify model risks. FMEval can evaluate text-based models that perform the following tasks:
+
+
+
+
+
 
 
 
