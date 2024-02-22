@@ -394,6 +394,42 @@ Amazon SageMaker Feature Store provides the option for records to be hard delete
 
 For offline feature store it preserves the history of each timestamp. It cannot be overwritten. Amazon SageMaker Feature Store supports the AWS Glue and Apache Iceberg table formats for the offline store. You can choose the table format when you’re creating a new feature group. AWS Glue is the default format.
 
+1. Open the Studio Classic console by following the instructions in Launch Amazon SageMaker Studio Classic.
+2. Choose the Home icon on the left navigation pane.
+3. Choose Data.
+4. From the dropdown list, choose Feature Store.
+5. Choose Create feature group.
+6. Under Feature group details, enter a feature group name.
+7. (Optional) Enter a description of the feature group.
+8. Under Feature group storage configuration, choose a storage configuration from the dropdown list. For information about storage configurations.
+9. If you have chosen to enable the online storage:
+   * If you only enable the online storage, you may choose a Storage type from the dropdown list.
+   * (Optional) Apply Time to Live (TTL) by toggling the switch to On and specifying the Time to Live duration value and unit. This will update the default TTL duration for all records added to the feature group after the feature group is created.
+10. If you have chosen to enable the offline storage:
+    * Under the Amazon S3 bucket name, enter a new bucket name or enter an existing bucket URL manually.
+    * From the Table format dropdown list, choose the table format. In most use cases, you should use the Apache Iceberg table format.
+    * Under IAM role ARN, choose the IAM role ARN you want to attach to this feature group.
+    * If you have chosen to enable the offline storage Table format and AWS Glue (default) Table format, under Data catalog Use default values for your AWS Glue Data Catalog or provide your existing Data Catalog name, table name, and database name to extend your existing AWS Glue Data Catalog.
+11. Under the Online store encryption key or Offline store encryption key dropdown list.
+12. After you specify all of the required information, the Continue button appears available. Choose Continue.
+13. Under Specify feature definitions, you have two options for providing a schema for your features: a JSON editor, or a table editor.
+    * JSON editor: In the JSON tab, enter or copy and paste your feature definitions in the JSON format.
+    * Table editor: In the Table tab, enter the feature feature name and choose the corresponding data type for each feature in your feature group. Choose + Add feature definitions to include more features. Be aware that you cannot remove feature definitions from your feature groups. However, you can add and update feature definitions after the feature group is created.
+14. After all of the features are included, choose Continue.
+15. Under Select required features, you must specify the record identifier and event time features. Do this by choosing the feature name under Record identifier feature name and Event time feature name dropdown lists, respectively.
+16. After you choose the record identifier and event time features, choose Continue.
+17. (Optional) To add tags for the feature group, choose Add new tag. Then enter a tag key and the corresponding value under Key and Value, respectively.
+18. Choose Continue.
+19. Under Review feature group, review the feature group information. To edit any step, choose the Edit button that corresponds to that step. This brings you to the corresponding step for editing. To return to step 5, choose Continue until you return to step 5.
+20. After you finalize the setup for your feature group, choose Create feature group.
+    If an issue occurs during setup, a pop-up alert message appears at the bottom of the page with tips for solving the issue. You can return to previous steps to fix the issues by choosing Edit for the step with conflicts.
+
+On the Features tab, you can find a list of all of the features. Use the filter to refine your list. Choose a feature to view its details.
+
+
+ 
+
+
 
 
 
