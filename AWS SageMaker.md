@@ -366,6 +366,11 @@ A FrameworkProcessor can run Processing jobs with a specified machine learning f
                                ProcessingOutput(source='/opt/ml/processing/output/test')])
    ```
 
+### Create, store, and share features with Amazon SageMaker Feature Store
+The machine learning (ML) development process often begins with extracting data signals also known as features from data to train ML models. Amazon SageMaker Feature Store makes it easy for data scientists, machine learning engineers, and general practitioners to create, share, and manage features for ML development. Feature Store accelerates this process by reducing repetitive data processing and curation work required to convert raw data into features for training an ML algorithm.
+
+
+
 
 
 
