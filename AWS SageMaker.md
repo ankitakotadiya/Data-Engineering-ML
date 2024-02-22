@@ -253,6 +253,11 @@ You can export your data to S3 bucket, Python Code, SageMaker pipeline, and Feat
 
 <img width="596" alt="Screenshot 2024-02-22 at 8 49 21 AM" src="https://github.com/ankitakotadiya/Data-Engineering-ML/assets/27961132/e6547bff-71e9-42b9-8d1c-4eabf68a14de">
 
+### Scale data preparation using Apache Spark, Hive, or Presto on Amazon EMR or AWS Glue from Amazon SageMaker Studio Classic notebooks
+Amazon SageMaker Studio Classic provides data scientists, machine learning (ML) engineers, and general practitioners with tools to perform data analytics and data preparation at scale. Analyzing, transforming, and preparing large amounts of data is a foundational step of any data science and ML workflow. SageMaker Studio Classic comes with built-in integration of Amazon EMR and AWS Glue Interactive Sessions to handle your large-scale interactive data preparation and machine learning workflows, all within your Studio Classic notebook.
+
+
+
 
 
 
