@@ -290,6 +290,46 @@ spark_processor.run(
                's3_output_key_prefix', output_prefix]
 )
 ```
+The following code example shows how the notebook uses SKLearnProcessor to run your own scikit-learn script using a Docker image provided and maintained by SageMaker, instead of your own Docker image.
+
+```
+from sagemaker.sklearn.processing import SKLearnProcessor
+from sagemaker.processing import ProcessingInput, ProcessingOutput
+
+sklearn_processor = SKLearnProcessor(framework_version='0.20.0',
+                                     role=role,
+                                     instance_type='ml.m5.xlarge',
+                                     instance_count=1)
+
+sklearn_processor.run(code='preprocessing.py',
+                      inputs=[ProcessingInput(
+                        source='s3://path/to/my/input-data.csv',
+                        destination='/opt/ml/processing/input')],
+                      outputs=[ProcessingOutput(source='/opt/ml/processing/output/train'),
+                               ProcessingOutput(source='/opt/ml/processing/output/validation'),
+                               ProcessingOutput(source='/opt/ml/processing/output/test')]
+                     )
+
+```
+
+A FrameworkProcessor can run Processing jobs with a specified machine learning framework, providing you with an Amazon SageMaker–managed container for whichever machine learning framework you choose. FrameworkProcessor provides premade containers for the following machine learning frameworks: Hugging Face, MXNet, PyTorch, TensorFlow, and XGBoost.
+
+#### Run Scripts with Your Own Processing Container
+1. Create a Docker directory and add the Dockerfile used to create the processing container. Install pandas and scikit-learn into it. (You could also install your own dependencies with a similar RUN command.)
+   ```
+   mkdir docker
+
+  %%writefile docker/Dockerfile
+  
+  FROM python:3.7-slim-buster
+  
+  RUN pip3 install pandas==0.25.3 scikit-learn==0.21.3
+  ENV PYTHONUNBUFFERED=TRUE
+  
+  ENTRYPOINT ["python3"]
+   ```
+
+
 
 
 
