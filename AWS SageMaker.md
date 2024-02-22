@@ -130,6 +130,154 @@ Amazon SageMaker JumpStart has integrations with SageMaker Clarify Foundation Mo
 
 Use Amazon SageMaker JumpStart to evaluate text-based foundation models with FMEval. You can use these model evaluations to compare model quality and responsibility metrics for one model, between two models, or between different versions of the same model, to help you quantify model risks. FMEval can evaluate text-based models that perform the following tasks:
 
+### Prepare ML Data with Amazon SageMaker Data Wrangler
+You can use Amazon SageMaker Data Wrangler to import, prepare, transform, visualize and analyze data. You can integrate Data Wrangler into your machine learning workflows to simplify and streamline data pre-processing and feature engineering using little to no coding. You can also add your own Python scripts and transformations to customize your data prep workflow.
+
+Import data from Amazon S3, Amazon Redshift, Amazon Athena, and use Data Wrangler to create sophisticated machine learning data prep workflows with built-in and custom data transformations and analysis including feature target leakage and quick modeling.
+
+After you have defined a data prep workflow, or data flow, you can integrate it with SageMaker Processing, SageMaker Pipelines, and SageMaker Feature Store, simplify the task of processing, sharing and storing ML training data. You can also export your data flow to a python script and create a custom ML data prep pipeline.
+
+To access Data Wrangler in Studio Classic, do the following.
+1. Sign in to Studio Classic and Choose Studio.
+2. Choose Launch app.
+3. From the dropdown list, select Studio.
+4. Choose the Home icon.
+5. Choose Data.
+6. Choose Data Wrangler.
+7. You can also create a Data Wrangler flow by doing the following.
+   * In the top navigation bar, select File.
+   * Select New.
+   * Select Data Wrangler Flow.
+   <img width="501" alt="Screenshot 2024-02-22 at 8 03 26 AM" src="https://github.com/ankitakotadiya/Data-Engineering-ML/assets/27961132/bb763aaa-a27c-4c4b-af33-b518a9532907">
+
+8. (Optional) Rename the new directory and the .flow file.
+9. When you create a new .flow file in Studio Classic, you might see a carousel that introduces you to Data Wrangler.
+10. This messaging persists as long as the KernelGateway app on your User Details page is Pending. To see the status of this app, in the SageMaker console on the Amazon SageMaker Studio Classic page, select the name of the user you are using to access Studio Classic. On the User Details page, you see a KernelGateway app under Apps. Wait until this app status is Ready to start using Data Wrangler. This can take around 5 minutes the first time you launch Data Wrangler.
+
+<img width="503" alt="Screenshot 2024-02-22 at 8 06 09 AM" src="https://github.com/ankitakotadiya/Data-Engineering-ML/assets/27961132/f5c5d6fa-f145-41ad-b81a-c1ed448731e9">
+
+11. To get started, choose a data source and use it to import a dataset. When you import a dataset, it appears in your data flow.
+12. After you import a dataset, Data Wrangler automatically infers the type of data in each column. Choose + next to the Data types step and select Edit data types.
+13. Use the data flow to add transforms and analyses.
+14. To export a complete data flow, choose Export and choose an export option.
+15. Finally, choose the Components and registries icon, and select Data Wrangler from the dropdown list to see all the .flow files that you've created. You can use this menu to find and move between data flows.
+
+#### Import
+You can use Amazon SageMaker Data Wrangler to import data from the following data sources: Amazon Simple Storage Service (Amazon S3), Amazon Athena, Amazon Redshift, and Snowflake. The dataset that you import can include up to 1000 columns.
+
+#### Create and Use a Data Wrangler Flow
+Use an Amazon SageMaker Data Wrangler flow, or a data flow, to create and modify a data preparation pipeline. The data flow connects the datasets, transformations, and analyses, or steps, you create and can be used to define your pipeline.
+
+When you create a Data Wrangler flow in Amazon SageMaker Studio Classic, Data Wrangler uses an Amazon EC2 instance to run the analyses and transformations in your flow. By default, Data Wrangler uses the m5.4xlarge instance. m5 instances are general purpose instances that provide a balance between compute and memory. You can use m5 instances for a variety of compute workloads.
+
+Data Wrangler also gives you the option of using r5 instances. r5 instances are designed to deliver fast performance that processes large datasets in memory.
+
+##### The Data Flow UI
+When you import a dataset, the original dataset appears on the data flow and is named Source. Each time you add a transform step, you create a new dataframe. When multiple transform steps (other than Join or Concatenate) are added to the same dataset, they are stacked.
+
+<img width="594" alt="Screenshot 2024-02-22 at 8 21 21 AM" src="https://github.com/ankitakotadiya/Data-Engineering-ML/assets/27961132/c732e506-cfe5-4d9d-9517-9229bfe30d60">
+
+##### Add a Step to Your Data Flow
+Select + next to any dataset or previously added step and then select one of the following options:
+
+##### Delete a Step from Your Data Flow
+Choose the group of steps that has the step that you're deleting. Choose the icon next to the step. Choose Delete step.
+
+<img width="595" alt="Screenshot 2024-02-22 at 8 26 27 AM" src="https://github.com/ankitakotadiya/Data-Engineering-ML/assets/27961132/b3352f2c-6a36-4fc0-89c0-6766f03cd821">
+
+##### The following image shows an example of editing a step.
+
+<img width="667" alt="Screenshot 2024-02-22 at 8 27 40 AM" src="https://github.com/ankitakotadiya/Data-Engineering-ML/assets/27961132/f4aa41c8-eefc-4e3f-9b17-7710211a2e94">
+
+#### Get Insights On Data and Data Quality
+Use the Data Quality and Insights Report to perform an analysis of the data that you've imported into Data Wrangler. We recommend that you create the report after you import your dataset. You can use the report to help you clean and process your data. It gives you information such as the number of missing values and the number of outliers. If you have issues with your data, such as target leakage or imbalance, the insights report can bring those issues to your attention.
+
+1. Choose a + next to a node in your Data Wrangler flow.
+2. Select Get data insights.
+3. For Analysis name, specify a name for the insights report.
+4. (Optional) For Target column, specify the target column.
+5. For Problem type, specify Regression or Classification.
+6. For Data size, specify one of the following:
+   * 50 K – Uses the first 50000 rows of the dataset that you've imported to create the report.
+   * Entire dataset – Uses the entire dataset that you've imported to create the report.
+7. Choose Create.
+
+Data Quality report will give insight on the following topics:
+* Summary
+* Target column
+* Quick model
+* Feature summary
+* Samples
+* Definitions
+
+#### Automatically Train Models on Your Data Flow
+You can use Amazon SageMaker Autopilot to automatically train, tune, and deploy models on the data that you've transformed in your data flow. Amazon SageMaker Autopilot can go through several algorithms and use the one that works best with your data. For more information about Amazon SageMaker Autopilot, see SageMaker Autopilot.
+
+You can prepare and deploy a model by choosing a node in your Data Wrangler flow and choosing Export and Train in the data preview. You can use this method to view your dataset before you choose to train a model on it.
+
+1. Choose the + next to the node containing the training data.
+2. Choose Train model.
+3. (Optional) Specify a AWS KMS key or ID. For more information about creating and controlling cryptographic keys to protect your data.
+4. Choose Export and train.
+5. After Amazon SageMaker Autopilot trains the model on the data that Data Wrangler exported, specify a name for Experiment name.
+6. Under Input data, choose Preview to verify that Data Wrangler properly exported your data to Amazon SageMaker Autopilot.
+7. For Target, choose the target column.
+8. (Optional) For S3 location under Output data, specify an Amazon S3 location other than the default location.
+9. Choose Next: Training method.
+10. (Optional) For Auto deploy endpoint, specify a name for the endpoint.
+11. For Deployment option, choose a deployment method. You can choose to deploy with or without the transformations that you've made to your data.
+12. Choose Next: Review and create.
+13. Choose Create experiment.
+
+#### Transform Data
+Amazon SageMaker Data Wrangler provides numerous ML data transforms to streamline cleaning, transforming, and featurizing your data. When you add a transform, it adds a step to the data flow. Each transform you add modifies your dataset and produces a new dataframe. All subsequent transforms apply to the resulting dataframe.
+
+1. Choose the + next to the step in the data flow.
+2. Choose Add transform.
+3. Choose Add step.
+4. Choose a transform.
+5. (Optional) You can search for the transform that you want to use. Data Wrangler highlights the query in the results.
+
+<img width="683" alt="Screenshot 2024-02-22 at 8 39 25 AM" src="https://github.com/ankitakotadiya/Data-Engineering-ML/assets/27961132/b2bcc432-3d84-43ef-bf1b-53e15b398989">
+
+#### Analyze and Visualize
+Amazon SageMaker Data Wrangler includes built-in analyses that help you generate visualizations and data analyses in a few clicks. You can also create custom analyses using your own code.
+
+You add an analysis to a dataframe by selecting a step in your data flow, and then choosing Add analysis. To access an analysis you've created, select the step that contains the analysis, and select the analysis.
+
+#### Reusing Data Flows for Different Datasets
+For Amazon Simple Storage Service (Amazon S3) data sources, you can create and use parameters. A parameter is a variable that you've saved in your Data Wrangler flow. Its value can be any portion of the data source's Amazon S3 path. Use parameters to quickly change the data that you're importing into a Data Wrangler flow or exporting to a processing job. You can also use parameters to select and import a specific subset of your data.
+
+#### Export
+You can export your data to S3 bucket, Python Code, SageMaker pipeline, and Feature Store.
+
+<img width="596" alt="Screenshot 2024-02-22 at 8 49 21 AM" src="https://github.com/ankitakotadiya/Data-Engineering-ML/assets/27961132/e6547bff-71e9-42b9-8d1c-4eabf68a14de">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
+
+
+
+
+
+
 
 
 
