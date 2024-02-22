@@ -369,6 +369,40 @@ A FrameworkProcessor can run Processing jobs with a specified machine learning f
 ### Create, store, and share features with Amazon SageMaker Feature Store
 The machine learning (ML) development process often begins with extracting data signals also known as features from data to train ML models. Amazon SageMaker Feature Store makes it easy for data scientists, machine learning engineers, and general practitioners to create, share, and manage features for ML development. Feature Store accelerates this process by reducing repetitive data processing and curation work required to convert raw data into features for training an ML algorithm.
 
+Further, the processing logic for your data is authored only once, and features generated are used for both training and inference, reducing the training-serving skew. Feature Store is a centralized store for features and associated metadata so features can be easily discovered and reused. You can create an online or an offline store. The online store is used for low latency real-time inference use cases, and the offline store is used for training and batch inference.  
+
+<img width="662" alt="Screenshot 2024-02-22 at 12 13 25 PM" src="https://github.com/ankitakotadiya/Data-Engineering-ML/assets/27961132/f86e4d10-3a66-457f-861d-8174efce842e">
+
+#### How Feature Store works
+In Feature Store, features are stored in a collection called a feature group. You can visualize a feature group as a table in which each column is a feature, with a unique identifier for each row. In principle, a feature group is composed of features and values specific to each feature. A Record is a collection of values for features that correspond to a unique RecordIdentifier. Altogether, a FeatureGroup is a group of features defined in your FeatureStore to describe a Record. 
+
+* Online – In online mode, features are read with low latency (milliseconds) reads and used for high throughput predictions. This mode requires a feature group to be stored in an online store.
+* Offline – In offline mode, large streams of data are fed to an offline store, which can be used for training and batch inference. This mode requires a feature group to be stored in an offline store. The offline store uses your S3 bucket for storage and can also fetch data using Athena queries.
+* Online and Offline – This includes both online and offline modes.
+
+The following example diagram conceptualizes a few Feature Store concepts:
+<img width="631" alt="Screenshot 2024-02-22 at 12 16 54 PM" src="https://github.com/ankitakotadiya/Data-Engineering-ML/assets/27961132/806f955f-9f38-435e-afbe-2262afa646a1">
+
+#### Stream ingestion
+You can use streaming sources such as Kafka or Kinesis as a data source, where records are extracted from, and directly feed records to the online store for training, inference or feature creation. Records can be ingested into your feature group by using the synchronous PutRecord API call.
+
+#### Data Wrangler with Feature Store
+Data Wrangler is a feature of Studio Classic that provides an end-to-end solution to import, prepare, transform, featurize, and analyze data. Data Wrangler enables you to engineer your features and ingest them into your online or offline store feature groups.
+
+#### Time to live (TTL) duration for records
+Amazon SageMaker Feature Store provides the option for records to be hard deleted from the online store after a time duration is reached, with time to live (TTL) duration (TtlDuration). The record will expire after the record’s EventTime plus the TtlDuration is reached, or ExpiresAt = EventTime + TtlDuration. The TtlDuration can be applied at a feature group level, where all records within the feature group will have the TtlDuration by default, or at an individual record level. If TtlDuration is unspecified, the default value is null and the record will remain in the online store until it is overwritten.
+
+For offline feature store it preserves the history of each timestamp. It cannot be overwritten. Amazon SageMaker Feature Store supports the AWS Glue and Apache Iceberg table formats for the offline store. You can choose the table format when you’re creating a new feature group. AWS Glue is the default format.
+
+
+
+
+
+
+
+
+
+
 
 
 
