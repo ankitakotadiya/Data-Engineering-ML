@@ -463,6 +463,38 @@ To train a machine learning model, you need a large, high-quality, labeled datas
 
 After you have configured and verified your instructions, select Create to create the labeling job.
 
+### Automate Data Labeling
+If you choose, Amazon SageMaker Ground Truth can use active learning to automate the labeling of your input data for certain built-in task types. Active learning is a machine learning technique that identifies data that should be labeled by your workers. In Ground Truth, this functionality is called automated data labeling. Automated data labeling helps to reduce the cost and time that it takes to label your dataset compared to using only humans. When you use automated labeling, you incur SageMaker training and inference costs.
+
+##### How it Works
+1. When Ground Truth starts an automated data labeling job, it selects a random sample of input data objects and sends them to human workers. If more than 10% of these data objects fail, the labeling job will fail. If the labeling job fails, in addition to reviewing any error message Ground Truth returns, check that your input data is displaying correctly in the worker UI, instructions are clear, and that you have given workers enough time to complete tasks.
+2. When the labeled data is returned, it is used to create a training set and a validation set. Ground Truth uses these datasets to train and validate the model used for auto-labeling.
+3. Ground Truth runs a batch transform job, using the validated model for inference on the validation data. Batch inference produces a confidence score and quality metric for each object in the validation data.
+4. The auto labeling component will use these quality metrics and confidence scores to create a confidence score threshold that ensures quality labels.
+5. Ground Truth runs a batch transform job on the unlabeled data in the dataset, using the same validated model for inference. This produces a confidence score for each object.
+6. The Ground Truth auto labeling component determines if the confidence score produced in step 5 for each object meets the required threshold determined in step 4. If the confidence score meets the threshold, the expected quality of automatically labeling exceeds the requested level of accuracy and that object is considered auto-labeled.
+7. Step 6 produces a dataset of unlabeled data with confidence scores. Ground Truth selects data points with low confidence scores from this dataset and sends them to human workers.
+8. Ground Truth uses the existing human-labeled data and this additional labeled data from human workers to update the model.
+9. The process is repeated until the dataset is fully labeled or until another stopping condition is met. For example, auto-labeling stops if your human annotation budget is reached.
+
+<img width="608" alt="Screenshot 2024-02-22 at 6 13 49 PM" src="https://github.com/ankitakotadiya/Data-Engineering-ML/assets/27961132/9df37ae0-756d-47b6-b198-8d4b6da5d660">
+
+##### To create an automated data labeling job (console)
+1. Open the Ground Truth Labeling jobs section of the [SageMaker console](https://console.aws.amazon.com/sagemaker/groundtruth).
+2. Using Create a Labeling Job (Console) as a guide, complete the Job overview and Task type sections. Note that auto labeling is not supported for custom task types.
+3. Under Workers, choose your workforce type.
+4. In the same section, choose Enable automated data labeling.
+5. Using Step 4: Configure the Bounding Box Tool as a guide, create worker instructions in the section Task Type labeling tool. For example, if you chose Semantic segmentation as your labeling job type, this section is called Semantic segmentation labeling tool.
+6. To preview your worker instructions and dashboard, choose Preview.
+7. Choose Create. This creates and starts your labeling job and the auto labeling process.
+
+
+
+
+
+
+
+
 
 
 
