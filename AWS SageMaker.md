@@ -426,6 +426,55 @@ For offline feature store it preserves the history of each timestamp. It cannot 
 
 On the Features tab, you can find a list of all of the features. Use the filter to refine your list. Choose a feature to view its details.
 
+### SageMaker Ground Truth
+To train a machine learning model, you need a large, high-quality, labeled dataset. You can label your data using Amazon SageMaker Ground Truth. It can also be utilized to generate labels for the production model and assist in determining the baseline.
+
+To train a machine learning model, you need a large, high-quality, labeled dataset. Ground Truth helps you build high-quality training datasets for your machine learning models. With Ground Truth, you can use workers from either Amazon Mechanical Turk, a vendor company that you choose, or an internal, private workforce along with machine learning to enable you to create a labeled dataset. You can use the labeled dataset output from Ground Truth to train your own models. You can also use the output as a training dataset for an Amazon SageMaker model.
+
+1. Create an Amazon S3 bucket to hold the input and output files. The bucket must be in the same Region where you are running Ground Truth.
+2. From the left navigation, choose Labeling jobs.
+3. Choose Create labeling job to start the job creation process.
+4. In the Job overview section, provide the following information:
+   * Job name – Give the labeling job a name that describes the job. This name is shown in your job list. The name must be unique in your account in an AWS Region.
+   * Label attribute name – Leave this unchecked as the default value is the best option for this introductory job.
+   * Input data setup – Select Automated data setup. This option allows you to automatically connect to your input data in S3.
+   * S3 location for input datasets – Enter the S3 location where you added the images in step 1.
+   * S3 location for output datasets – The location where your output data is written in S3.
+   * Data type – Use the drop down menu to select Image. Ground Truth will use all images found in the S3 location for input datasets as input for your labeling job.
+   * IAM role – Create or choose an IAM role with the AmazonSageMakerFullAccess IAM policy attached.
+5. In the Task type section, for the Task category field, choose Image.
+6. In the Task selection choose Bounding box.
+7. Choose Next to move on to configuring your labeling job.
+8. Select Workers
+9. In the Workers section, choose Private.
+10. If this is your first time using a private workforce, in the Email addresses field, enter up to 100 email addresses. The addresses must be separated by a comma. You should include your own email address so that you are part of the workforce and can see data object labeling tasks.
+11. In the Organization name field, enter the name of your organization. This information is used to customize the email sent to invite a person to your private workforce. You can change the organization name after the user pool is created through the console.
+12. In the Contact email field enter an email address that members of the workforce use to report problems with the task.
+13. Configure the Bounding Box Tool.
+14. In the Task description field type in brief instructions for the task. For example: Draw a box around any objects in the image.
+15. In the Labels field, type a category name for the objects that the worker should draw a bounding box around. For example, if you are asking the worker to draw boxes around football players, you could use "Football Player" in this field.
+16. The Short instructions section enables you to create instructions that are displayed on the page with the image that your workers are labeling. We suggest that you include an example of a correctly drawn bounding box and an example of an incorrectly drawn box. To create your own instructions, use these steps:
+    * Select the text between GOOD EXAMPLE and the image placeholder. Replace it with the following text: "Draw the box around the object with a small border."
+    * Choose the image button and then enter the HTTPS URL of one of the images that you created in step 1. It is also possible to embed images directly in the short instructions section, however this section has a quota of 100 kilobytes (including text). If your images and text exceed 100 kilobytes, you receive an error.
+    * Select the text between BAD EXAMPLE and the image placeholder. Replace it with the following text:"Don't make the bounding box too large or cut into the object."
+    * Choose the image button and then enter the HTTPS URL of the other image that you created in step 1.
+17. Select Preview to preview the worker UI. The preview opens in a new tab, and so if your browser blocks pop ups you may need to manually enable the tab to open. When you add one or more annotations to the preview and then select Submit you can see a preview of the output data your annotation would created.
+18. After you have configured and verified your instructions, select Create to create the labeling job.
+
+After you have configured and verified your instructions, select Create to create the labeling job.
+
+
+
+
+
+
+
+
+
+
+
+
+
 
  
 
