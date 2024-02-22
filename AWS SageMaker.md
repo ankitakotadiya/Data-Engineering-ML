@@ -256,6 +256,41 @@ You can export your data to S3 bucket, Python Code, SageMaker pipeline, and Feat
 ### Scale data preparation using Apache Spark, Hive, or Presto on Amazon EMR or AWS Glue from Amazon SageMaker Studio Classic notebooks
 Amazon SageMaker Studio Classic provides data scientists, machine learning (ML) engineers, and general practitioners with tools to perform data analytics and data preparation at scale. Analyzing, transforming, and preparing large amounts of data is a foundational step of any data science and ML workflow. SageMaker Studio Classic comes with built-in integration of Amazon EMR and AWS Glue Interactive Sessions to handle your large-scale interactive data preparation and machine learning workflows, all within your Studio Classic notebook.
 
+### Process data
+To analyze data and evaluate machine learning models on Amazon SageMaker, use Amazon SageMaker Processing. With Processing, you can use a simplified, managed experience on SageMaker to run your data processing workloads, such as feature engineering, data validation, model evaluation, and model interpretation. You can also use the Amazon SageMaker Processing APIs during the experimentation phase and after the code is deployed in production to evaluate performance.
+
+<img width="670" alt="Screenshot 2024-02-22 at 11 32 08 AM" src="https://github.com/ankitakotadiya/Data-Engineering-ML/assets/27961132/38d9ebdd-3b61-42f4-a041-8c5883bfaea6">
+
+The preceding diagram shows how Amazon SageMaker spins up a Processing job. Amazon SageMaker takes your script, copies your data from Amazon Simple Storage Service (Amazon S3), and then pulls a processing container. The processing container image can either be an Amazon SageMaker built-in image or a custom image that you provide. The underlying infrastructure for a Processing job is fully managed by Amazon SageMaker. Cluster resources are provisioned for the duration of your job, and cleaned up when a job completes. The output of the Processing job is stored in the Amazon S3 bucket you specified.
+
+#### Data Processing with Apache Spark
+Apache Spark is a unified analytics engine for large-scale data processing. Amazon SageMaker provides prebuilt Docker images that include Apache Spark and other dependencies needed to run distributed data processing jobs.
+
+You can use the sagemaker.spark.PySparkProcessor or sagemaker.spark.SparkJarProcessor class to run your Spark application inside of a processing job. Note you can set MaxRuntimeInSeconds to a maximum runtime limit of 5 days. With respect to execution time, and number of instances used, simple spark workloads see a near linear relationship between the number of instances vs. time to completion.
+
+The following code example shows how to run a processing job that invokes your PySpark script preprocess.py.
+
+```
+from sagemaker.spark.processing import PySparkProcessor
+
+spark_processor = PySparkProcessor(
+    base_job_name="spark-preprocessor",
+    framework_version="2.4",
+    role=role,
+    instance_count=2,
+    instance_type="ml.m5.xlarge",
+    max_runtime_in_seconds=1200,
+)
+
+spark_processor.run(
+    submit_app="preprocess.py",
+    arguments=['s3_input_bucket', bucket,
+               's3_input_key_prefix', input_prefix,
+               's3_output_bucket', bucket,
+               's3_output_key_prefix', output_prefix]
+)
+```
+
 
 
 
