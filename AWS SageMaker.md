@@ -488,6 +488,31 @@ If you choose, Amazon SageMaker Ground Truth can use active learning to automate
 6. To preview your worker instructions and dashboard, choose Preview.
 7. Choose Create. This creates and starts your labeling job and the auto labeling process.
 
+### Train machine learning models
+The training stage of the full machine learning (ML) lifecycle spans from accessing your training dataset to generating a final model and selecting the best performing model for deployment. The following sections provide an overview of available SageMaker training features and resources with in-depth technical information for each.
+
+The following architecture diagram shows how SageMaker manages ML training jobs and provisions Amazon EC2 instances on behalf of SageMaker users. You as a SageMaker user can bring your own training dataset, saving it to Amazon S3. You can choose an ML model training from available SageMaker built-in algorithms, or bring your own training script with a model built with popular machine learning frameworks.
+
+<img width="663" alt="Screenshot 2024-02-23 at 7 55 25 AM" src="https://github.com/ankitakotadiya/Data-Engineering-ML/assets/27961132/339677c5-8142-46e6-8a97-44b73087fefa">
+
+#### Full view of the SageMaker Training workflow and features
+<img width="652" alt="Screenshot 2024-02-23 at 7 57 24 AM" src="https://github.com/ankitakotadiya/Data-Engineering-ML/assets/27961132/5a6daa5d-9ff3-4510-9c2c-e8b38acd54cd">
+
+##### Before training
+There are a number of scenarios of setting up data resources and access you need to consider before training. Refer to the following diagram and details of each before-training stage to get a sense of what decisions you need to make.
+![training-before](https://github.com/ankitakotadiya/Data-Engineering-ML/assets/27961132/32d5a67f-925b-4f88-89d2-79d1d4e56c47)
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
