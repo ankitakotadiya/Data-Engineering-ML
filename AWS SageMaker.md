@@ -500,7 +500,41 @@ The following architecture diagram shows how SageMaker manages ML training jobs 
 
 ##### Before training
 There are a number of scenarios of setting up data resources and access you need to consider before training. Refer to the following diagram and details of each before-training stage to get a sense of what decisions you need to make.
+
 ![training-before](https://github.com/ankitakotadiya/Data-Engineering-ML/assets/27961132/32d5a67f-925b-4f88-89d2-79d1d4e56c47)
+
+##### During training
+During training, you need to continuously improve training stability, training speed, training efficiency while scaling compute resources, cost optimization, and, most importantly, model performance. Read on for more information about during-training stages and relevant SageMaker Training features.
+
+![training-during](https://github.com/ankitakotadiya/Data-Engineering-ML/assets/27961132/12b25c1e-782b-407b-abc5-8bb67c905459)
+
+##### After Training
+After training, you obtain a final model artifact to use for model deployment and inference. There are additional actions involved in the after-training phase as shown in the following diagram.
+
+![training-after](https://github.com/ankitakotadiya/Data-Engineering-ML/assets/27961132/8bc43d9f-fc35-4acb-81b4-cd31363159ed)
+
+#### Run your local code as a SageMaker training job
+You can run your local machine learning (ML) Python code as a large single-node Amazon SageMaker training job or as multiple parallel jobs. You can do this by annotating your code with an @remote decorator, as shown in the following code example. Distributed training (across multiple instances) are not supported with remote functions.
+
+```
+@remote(**settings)
+def divide(x, y):
+    return x / y
+```
+
+##### Run Your Code from within SageMake Notebook or Studio UI
+If you working on Studio then Select Base Python 3.0 from the down arrow next to Image in the Change environment dialog box.
+
+The @remote decorator automatically detects the image attached to the SageMaker Studio Classic notebook and uses it to run the SageMaker training job. If image_uri is specified either as an argument in the decorator or in the configuration file, then the value specified in image_uri will be used instead of the detected image.
+
+Follow the below steps if you are working on your SageMaker Notebook.
+
+
+
+
+
+
+
 
 
 
