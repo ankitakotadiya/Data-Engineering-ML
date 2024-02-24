@@ -466,7 +466,7 @@ After you have configured and verified your instructions, select Create to creat
 ### Automate Data Labeling
 If you choose, Amazon SageMaker Ground Truth can use active learning to automate the labeling of your input data for certain built-in task types. Active learning is a machine learning technique that identifies data that should be labeled by your workers. In Ground Truth, this functionality is called automated data labeling. Automated data labeling helps to reduce the cost and time that it takes to label your dataset compared to using only humans. When you use automated labeling, you incur SageMaker training and inference costs.
 
-##### How it Works
+#### How it Works
 1. When Ground Truth starts an automated data labeling job, it selects a random sample of input data objects and sends them to human workers. If more than 10% of these data objects fail, the labeling job will fail. If the labeling job fails, in addition to reviewing any error message Ground Truth returns, check that your input data is displaying correctly in the worker UI, instructions are clear, and that you have given workers enough time to complete tasks.
 2. When the labeled data is returned, it is used to create a training set and a validation set. Ground Truth uses these datasets to train and validate the model used for auto-labeling.
 3. Ground Truth runs a batch transform job, using the validated model for inference on the validation data. Batch inference produces a confidence score and quality metric for each object in the validation data.
@@ -488,32 +488,32 @@ If you choose, Amazon SageMaker Ground Truth can use active learning to automate
 6. To preview your worker instructions and dashboard, choose Preview.
 7. Choose Create. This creates and starts your labeling job and the auto labeling process.
 
-### Train machine learning models
+## Train machine learning models
 The training stage of the full machine learning (ML) lifecycle spans from accessing your training dataset to generating a final model and selecting the best performing model for deployment. The following sections provide an overview of available SageMaker training features and resources with in-depth technical information for each.
 
 The following architecture diagram shows how SageMaker manages ML training jobs and provisions Amazon EC2 instances on behalf of SageMaker users. You as a SageMaker user can bring your own training dataset, saving it to Amazon S3. You can choose an ML model training from available SageMaker built-in algorithms, or bring your own training script with a model built with popular machine learning frameworks.
 
 <img width="663" alt="Screenshot 2024-02-23 at 7 55 25 AM" src="https://github.com/ankitakotadiya/Data-Engineering-ML/assets/27961132/339677c5-8142-46e6-8a97-44b73087fefa">
 
-#### Full view of the SageMaker Training workflow and features
+### Full view of the SageMaker Training workflow and features
 <img width="652" alt="Screenshot 2024-02-23 at 7 57 24 AM" src="https://github.com/ankitakotadiya/Data-Engineering-ML/assets/27961132/5a6daa5d-9ff3-4510-9c2c-e8b38acd54cd">
 
-##### Before training
+#### Before training
 There are a number of scenarios of setting up data resources and access you need to consider before training. Refer to the following diagram and details of each before-training stage to get a sense of what decisions you need to make.
 
 ![training-before](https://github.com/ankitakotadiya/Data-Engineering-ML/assets/27961132/32d5a67f-925b-4f88-89d2-79d1d4e56c47)
 
-##### During training
+#### During training
 During training, you need to continuously improve training stability, training speed, training efficiency while scaling compute resources, cost optimization, and, most importantly, model performance. Read on for more information about during-training stages and relevant SageMaker Training features.
 
 ![training-during](https://github.com/ankitakotadiya/Data-Engineering-ML/assets/27961132/12b25c1e-782b-407b-abc5-8bb67c905459)
 
-##### After Training
+#### After Training
 After training, you obtain a final model artifact to use for model deployment and inference. There are additional actions involved in the after-training phase as shown in the following diagram.
 
 ![training-after](https://github.com/ankitakotadiya/Data-Engineering-ML/assets/27961132/8bc43d9f-fc35-4acb-81b4-cd31363159ed)
 
-#### Run your local code as a SageMaker training job
+### Run your local code as a SageMaker training job
 You can run your local machine learning (ML) Python code as a large single-node Amazon SageMaker training job or as multiple parallel jobs. You can do this by annotating your code with an @remote decorator, as shown in the following code example. Distributed training (across multiple instances) are not supported with remote functions.
 
 ```
@@ -522,12 +522,302 @@ def divide(x, y):
     return x / y
 ```
 
-##### Run Your Code from within SageMake Notebook or Studio UI
+#### Run Your Code from within SageMake Notebook or Studio UI
 If you working on Studio then Select Base Python 3.0 from the down arrow next to Image in the Change environment dialog box.
 
 The @remote decorator automatically detects the image attached to the SageMaker Studio Classic notebook and uses it to run the SageMaker training job. If image_uri is specified either as an argument in the decorator or in the configuration file, then the value specified in image_uri will be used instead of the detected image.
 
-Follow the below steps if you are working on your SageMaker Notebook.
+For SageMaker notebook follow the example code [here](https://github.com/ankitakotadiya/Data-Engineering-ML/tree/main/SageMaker-Remote-Function).
+
+## Deploy models for inference
+With Amazon SageMaker, you can deploy your machine learning (ML) models to make predictions, also known as inference. SageMaker provides a broad selection of ML infrastructure and model deployment options to help meet all your ML inference needs. It is a fully managed service and integrates with MLOps tools, so you can scale your model deployment, reduce inference costs, manage models more effectively in production, and reduce operational burden.
+
+![inference-workflow-flowchart](https://github.com/ankitakotadiya/Data-Engineering-ML/assets/27961132/38b5a583-2744-48a1-9368-a57aa84bec5e)
+
+You can perform these actions using the AWS console, the AWS SDKs, the SageMaker Python SDK, AWS CloudFormation or the AWS CLI.
+
+### Create a model in Amazon SageMaker with ModelBuilder
+Preparing your model for deployment on a SageMaker endpoint requires multiple steps, including choosing a model image, setting up the endpoint configuration, coding your serialization and deserialization functions to transfer data to and from server and client, identifying model dependencies, and uploading them to Amazon S3. ModelBuilder can reduce the complexity of initial setup and deployment to help you create a deployable model in a single step.
+
+Please refer the example link of [ModelBuilder](https://github.com/ankitakotadiya/Data-Engineering-ML/tree/main/SageMaker-Model-Builder).
+
+### Real-time inference
+Real-time inference is ideal for inference workloads where you have real-time, interactive, low latency requirements. You can deploy your model to SageMaker hosting services and get an endpoint that can be used for inference. These endpoints are fully managed and support autoscaling.
+
+#### Create a deployable model
+1. Open the SageMaker Studio application.
+2. In the left navigation pane, choose Models.
+3. Choose the Deployable models tab.
+4. On the Deployable models page, choose Create.
+5. On the Create deployable model page, for the Model name field, enter a name for the model.
+The Container definition section looks like the following screenshot:
+<img width="500" alt="studio-container-definition" src="https://github.com/ankitakotadiya/Data-Engineering-ML/assets/27961132/b6aef138-3d39-4414-bfb3-f3898c2bc86f">
+
+For the Container definition section, do the following:
+1. For Container type, select Pre-built container if you'd like to use a SageMaker managed container, or select Bring your own container if you have your own container.
+2. If you selected Pre-built container, select the Container framework, Framework version, and Hardware type that you'd like to use.
+3. If you selected Bring your own container, enter an Amazon ECR path for ECR path to container image.
+
+Then, fill out the Artifacts section, which looks like the following screenshot:
+<img width="400" alt="studio-artifacts-section" src="https://github.com/ankitakotadiya/Data-Engineering-ML/assets/27961132/78a928e0-9efe-40e3-8b6c-a33b6d2cc5dd">
+
+1. If you're using one of the frameworks that SageMaker supports for packaging model artifacts (PyTorch or XGBoost), then for Artifacts, you can choose the Upload artifacts option. With this option, you can simply specify your raw model artifacts, any custom inference code you have, and your requirements.txt file, and SageMaker handles packaging the archive for you.
+2. If you're not using a framework that SageMaker supports for packaging model artifacts, then Studio shows you the Pre-packaged artifacts option, and you must provide all of your artifacts already packaged as a tar.gz archive. Do the following:
+   * For Pre-packaged artifacts, select Input S3 URI for pre-packaged model artifacts if you have your tar.gz archive already uploaded to Amazon S3. Select Upload pre-packaged model artifacts if you want to directly upload your archive to SageMaker.
+   * If you selected Input S3 URI for pre-packaged model artifacts, enter the Amazon S3 path to your archive for S3 URI. Otherwise, select and upload the archive from your local machine.
+
+The next section is Security, which looks like the following screenshot:
+<img width="500" alt="studio-security-section" src="https://github.com/ankitakotadiya/Data-Engineering-ML/assets/27961132/b2368642-2105-4b31-aaf9-35f7d2820e97">
+
+1. For IAM role, enter the ARN for an IAM role.
+2. (Optional) For Virtual Private Cloud (VPC), you can select an Amazon VPC for storing your model configuration and artifacts.
+3. (Optional) Turn on the Network isolation toggle if you want to restrict your container's internet access.
+
+Finally, you can optionally fill out the Advanced options section, which looks like the following screenshot:
+<img width="500" alt="studio-advanced-options" src="https://github.com/ankitakotadiya/Data-Engineering-ML/assets/27961132/c682fcd8-29bd-4967-bc32-f53a66f38486">
+
+1. Turn on the Customized instance recommendations toggle if you want to run an Amazon SageMaker Inference Recommender job on your model after its creation. Inference Recommender is a feature that provides you with recommended instance types for optimizing inference performance and cost. You can view these instance recommendations when preparing to deploy your model.
+2. For Add environment variables, enter an environment variables for your container as key-value pairs.
+3. For Tags, enter any tags as key-value pairs.
+4. After finishing your model and container configuration, choose Create deployable model.
+
+Follow the [Real Time Inference](https://github.com/ankitakotadiya/Data-Engineering-ML/tree/main/SageMaker-RealTime-Inference) Example.
+
+#### Hosting Single Model
+You can create, update, and delete real-time inference endpoints that host a single model with Amazon SageMaker Studio, the AWS SDK for Python (Boto3), the SageMaker Python SDK, or the AWS CLI. For procedures and code examples.
+
+#### Host multiple models in one container behind one endpoint
+Multi-model endpoints provide a scalable and cost-effective solution to deploying large numbers of models. They use the same fleet of resources and a shared serving container to host all of your models. This reduces hosting costs by improving endpoint utilization compared with using single-model endpoints. It also reduces deployment overhead because Amazon SageMaker manages loading models in memory and scaling them based on the traffic patterns to your endpoint.
+
+Multi-model endpoints also enable time-sharing of memory resources across your models. This works best when the models are fairly similar in size and invocation latency. When this is the case, multi-model endpoints can effectively use instances across all models. If you have models that have significantly higher transactions per second (TPS) or latency requirements, we recommend hosting them on dedicated endpoints.
+
+##### Create a multi-model endpoint (console)
+1. Open the Amazon [SageMaker console](https://console.aws.amazon.com/sagemaker/).
+2. Choose Model, and then from the Inference group, choose Create model.
+3. For Model name, enter a name.
+4. For IAM role, choose or create an IAM role that has the AmazonSageMakerFullAccess IAM policy attached.
+5. In the Container definition section, for Provide model artifacts and inference image options, choose Use multiple models.
+  ![mme-create-model-ux-2](https://github.com/ankitakotadiya/Data-Engineering-ML/assets/27961132/73889aae-5f5d-4f2f-a012-0362eaa856f5)
+
+6. For the Inference container image, enter the Amazon ECR path for your desired container image.
+7. Choose Create model.
+8. Deploy your multi-model endpoint as you would a single model endpoint.
+
+#### Host multiple models which use different containers behind one endpoint
+SageMaker multi-container endpoints enable customers to deploy multiple containers, that use different models or frameworks, on a single SageMaker endpoint. The containers can be run in a sequence as an inference pipeline, or each container can be accessed individually by using direct invocation to improve endpoint utilization and optimize costs.
+
+1. Create container elements and InferenceExecutionConfig with direct invocation.
+```
+container1 = {
+                 'Image': '123456789012.dkr.ecr.us-east-1.amazonaws.com/myimage1:mytag',
+                 'ContainerHostname': 'firstContainer'
+             }
+
+container2 = {
+                 'Image': '123456789012.dkr.ecr.us-east-1.amazonaws.com/myimage2:mytag',
+                 'ContainerHostname': 'secondContainer'
+             }
+inferenceExecutionConfig = {'Mode': 'Direct'}
+                
+```
+2. Create the model with the container elements and set the InferenceExecutionConfig field.
+```
+import boto3
+sm_client = boto3.Session().client('sagemaker')
+
+response = sm_client.create_model(
+               ModelName = 'my-direct-mode-model-name',
+               InferenceExecutionConfig = inferenceExecutionConfig,
+               ExecutionRoleArn = role,
+               Containers = [container1, container2]
+           )
+                
+```
+The following example directly invokes the secondContainer of a multi-container endpoint to get a prediction.
+```
+import boto3
+runtime_sm_client = boto3.Session().client('sagemaker-runtime')
+
+response = runtime_sm_client.invoke_endpoint(
+   EndpointName ='my-endpoint',
+   ContentType = 'text/csv',
+   TargetContainerHostname='secondContainer', 
+   Body = body)
+
+```
+
+#### Host models along with pre-processing logic as serial inference pipeline behind one endpoint
+An inference pipeline is a Amazon SageMaker model that is composed of a linear sequence of two to fifteen containers that process requests for inferences on data. You use an inference pipeline to define and deploy any combination of pretrained SageMaker built-in algorithms and your own custom algorithms packaged in Docker containers. You can use an inference pipeline to combine preprocessing, predictions, and post-processing data science tasks. Inference pipelines are fully managed.
+
+##### Create a Pipeline Model
+1. Open the Amazon [SageMaker console](https://console.aws.amazon.com/sagemaker/).
+2. Choose Models, and then choose Create models from the Inference group.
+3. On the Create model page, provide a model name, choose an IAM role, and, if you want to use a private VPC, specify VPC values.
+![create-pipeline-model](https://github.com/ankitakotadiya/Data-Engineering-ML/assets/27961132/70c02c53-644b-48fd-9cc0-7dbc8a5de4e4)
+
+4. To add information about the containers in the inference pipeline, choose Add container, then choose Next.
+5. Complete the fields for each container in the order that you want to execute them, up to the maximum of fifteen. Complete the Container input options, , Location of inference code image, and, optionally, Location of model artifacts, Container host name, and Environmental variables fields. 
+
+![create-pipeline-model-containers](https://github.com/ankitakotadiya/Data-Engineering-ML/assets/27961132/64b72795-6c8b-4a8d-a422-a9ba81686f69)
+
+The MyInferencePipelineModel page summarizes the settings for the containers that provide input for the model. If you provided the environment variables in a corresponding container definition, SageMaker shows them in the Environment variables field.
+
+![pipeline-MyInferencePipelinesModel-recap](https://github.com/ankitakotadiya/Data-Engineering-ML/assets/27961132/6a8f0596-8166-42fe-85df-80711306798d)
+
+### Serverless Inference
+Amazon SageMaker Serverless Inference is a purpose-built inference option that enables you to deploy and scale ML models without configuring or managing any of the underlying infrastructure. On-demand Serverless Inference is ideal for workloads which have idle periods between traffic spurts and can tolerate cold starts. Serverless endpoints automatically launch compute resources and scale them in and out depending on traffic, eliminating the need to choose instance types or manage scaling policies. 
+
+1. Sign in to the Amazon SageMaker console.
+2. In the navigation tab, choose Inference.
+3. Choose Create model.
+4. For Model name, enter a name for the model that is unique to your account and AWS Region.
+5. For IAM role, either select an IAM role you have already created (see Prerequisites) or allow SageMaker to create one for you.
+6. In Container definition 1, for Container input options, select Provide model artifacts and input location.
+7. For Provide model artifacts and inference image options, select Use a single model.
+8. For Location of inference code image, enter an Amazon ECR path to a container. The image must either be a SageMaker-provided first party image (e.g. TensorFlow, XGBoost) or an image that resides in an Amazon ECR repository within the same account in which you are creating the endpoint.
+9. For Location of model artifacts, enter the Amazon S3 URI to your ML model. For example, s3://DOC-EXAMPLE-BUCKET/models/model.tar.gz.
+10. (Optional) For Tags, add key-value pairs to create metadata for your model.
+11. Choose Create model.
+
+To create an endpoint configuration (using the console)
+1. Sign in to the Amazon SageMaker console.
+2. In the navigation tab, choose Inference.
+3. Next, choose Endpoint configurations.
+4. Choose Create endpoint configuration.
+5. For Endpoint configuration name, enter a name that is unique within your account in a Region.
+6. For Type of endpoint, select Serverless.
+<img width="556" alt="serverless-endpoints-endpoint-config" src="https://github.com/ankitakotadiya/Data-Engineering-ML/assets/27961132/2aa715f3-ad58-426d-80ad-4c7bdd037192">
+
+7. For Production variants, choose Add model.
+8. Under Add model, select the model you want to use from the list of models and then choose Save.
+9. After adding your model, under Actions, choose Edit.
+10. For Memory size, choose the memory size you want in GB.
+![serverless-endpoints-endpoint-config-2](https://github.com/ankitakotadiya/Data-Engineering-ML/assets/27961132/85efa002-1810-4ebd-9282-d8e98f5445a5)
+
+11. For Max Concurrency, enter your desired maximum concurrent invocations for the endpoint. The maximum value you can enter is 200 and the minimum is 1.
+12. (Optional) To use Provisioned Concurrency, enter the desired number of concurrent invocations in the Provisioned Concurrency setting field. The number of provisioned concurrent invocations must be less than or equal to the number of maximum concurrent invocations.
+13. Choose Save.
+14. (Optional) For Tags, enter key-value pairs if you want to create metadata for your endpoint configuration.
+15. Choose Create endpoint configuration.
+
+Create an endpoint
+1. Sign in to the Amazon SageMaker console.
+2. In the navigation tab, choose Inference.
+3. Next, choose Endpoints.
+4. Choose Create endpoint.
+5. For Endpoint name, enter a name than is unique within a Region in your account.
+6. For Attach endpoint configuration, select Use an existing endpoint configuration.
+7. For Endpoint configuration, select the name of the endpoint configuration you created in the previous section and then choose Select endpoint configuration.
+8. (Optional) For Tags, enter key-value pairs if you want to create metadata for your endpoint.
+9. Choose Create endpoint.
+
+<img width="461" alt="serverless-endpoints-create" src="https://github.com/ankitakotadiya/Data-Engineering-ML/assets/27961132/67476fd2-631f-45d1-93e4-e411bbd6cbdd">
+
+Find the example [here](https://github.com/ankitakotadiya/Data-Engineering-ML/tree/main/SageMaker-Serverless-Inference).
+
+To invoke an endpoint
+```
+runtime = boto3.client("sagemaker-runtime")
+
+endpoint_name = "<your-endpoint-name>"
+content_type = "<request-mime-type>"
+payload = <your-request-body>
+
+response = runtime.invoke_endpoint(
+    EndpointName=endpoint_name,
+    ContentType=content_type,
+    Body=payload
+)
+```
+
+### Asynchronous inference
+Amazon SageMaker Asynchronous Inference is a capability in SageMaker that queues incoming requests and processes them asynchronously. This option is ideal for requests with large payload sizes (up to 1GB), long processing times (up to one hour), and near real-time latency requirements. Asynchronous Inference enables you to save on costs by autoscaling the instance count to zero when there are no requests to process, so you only pay when your endpoint is processing requests.
+
+Creating an asynchronous inference endpoint is similar to creating real-time inference endpoints. You can use your existing SageMaker models and only need to specify the AsyncInferenceConfig object while creating your endpoint configuration with the EndpointConfig field in the CreateEndpointConfig API. The following diagram shows the architecture and workflow of Asynchronous Inference.
+
+Please follow the example [link](https://github.com/ankitakotadiya/Data-Engineering-ML/tree/main/SageMaker-Async-Inference).
+
+### Batch Transform
+Use batch transform when you need to do the following:
+
+* Preprocess datasets to remove noise or bias that interferes with training or inference from your dataset.
+* Get inferences from large datasets.
+* Run inference when you don't need a persistent endpoint.
+* Associate input records with inferences to assist the interpretation of results.
+
+When a batch transform job starts, SageMaker initializes compute instances and distributes the inference or preprocessing workload between them. Batch Transform partitions the Amazon S3 objects in the input by key and maps Amazon S3 objects to instances. When you have multiple files, one instance might process input1.csv, and another instance might process the file named input2.csv. If you have one input file but initialize multiple compute instances, only one instance processes the input file and the rest of the instances are idle.
+
+Follow the example [here](https://github.com/ankitakotadiya/Data-Engineering-ML/tree/main/SageMaker-Batch-Transform-Inference).
+
+### Update models in production
+Deployment guardrails are a set of model deployment options in Amazon SageMaker Inference to update your machine learning models in production. Using the fully managed deployment options, you can control the switch from the current model in production to a new one. Traffic shifting modes in blue/green deployments, such as canary and linear, give you granular control over the traffic shifting process from your current model to the new one during the course of the update. There are also built-in safeguards such as auto-rollbacks that help you catch issues early and automatically take corrective action before they significantly impact production.
+
+#### Blue/Green Deployments
+You can shift traffic from your old fleet (the blue fleet) to a new fleet (green fleet) with the updates. Blue/green deployments offer multiple traffic shifting modes. A traffic shifting mode is a configuration that specifies how SageMaker routes endpoint traffic to a new fleet containing your updates. The following traffic shifting modes provide you with different levels of control over the endpoint update process:
+
+* All At Once Traffic Shifting shifts all of your endpoint traffic from the blue fleet to the green fleet. Once the traffic shifts to the green fleet, your pre-specified Amazon CloudWatch alarms begin monitoring the green fleet for a set amount of time (the baking period). If no alarms trip during the baking period, then SageMaker terminates the blue fleet.
+* Canary Traffic Shifting shifts one small portion of your traffic (a canary) to the green fleet and monitor it for a baking period. If the canary succeeds on the green fleet, then SageMaker shifts the rest of the traffic from the blue fleet to the green fleet before terminating the blue fleet.
+* Linear Traffic Shifting provides even more customization over the number of traffic-shifting steps and the percentage of traffic to shift for each step. While canary shifting lets you shift traffic in two steps, linear shifting extends this to n linearly spaced steps.
+
+#### Rolling Deployments
+You can update your endpoint as SageMaker incrementally provisions capacity and shifts traffic to a new fleet in steps of a batch size that you specify. Instances on the new fleet are updated with the new deployment configuration, and if no CloudWatch alarms trip during the baking period, then SageMaker cleans up instances on the old fleet. This option gives you granular control over the instance count or capacity percentage shifted during each step.
+
+### Shadow tests
+With Amazon SageMaker you can evaluate any changes to your model serving infrastructure by comparing its performance against the currently deployed infrastructure. This practice is known as shadow testing. Shadow testing can help you catch potential configuration errors and performance issues before they impact end users. With SageMaker, you don't need to invest in building your shadow testing infrastructure, so you can focus on model development.
+
+You can schedule the test to start at any time and continue for a specified duration. The default duration is 7 days and the maximum is 30 days. After the test is complete, the endpoint reverts to the state it was in prior to starting the test. This ensures that you do not have to manually clean up resources upon the completion of the test.
+
+1. Open the SageMaker console.
+2. In the left navigation panel, choose Inference, and then choose Shadow tests.
+3. Choose Create shadow test.
+4. Under Name, enter a name for the test.
+5. (Optional) Under Description, enter a description for the test.
+6. (Optional) Specify Tags using Key and Value pairs.
+7. Choose Next.
+
+If you want to use an existing endpoint for your test, fill out the Enter shadow test settings page by doing the following:
+1. Choose a role that has the AmazonSageMakerFullAccess IAM policy attached.
+2. Choose Use an existing endpoint, and then choose one of the available endpoints.
+3. (Optional) To encrypt the storage volume on your endpoint, either choose an existing KMS key or choose Enter a KMS key ARN from the dropdown list under Encryption key. If you choose the second option, a field to enter the KMS key ARN appears. Enter the KMS key ARN in that field.
+4. If you have multiple production variants behind that endpoint, remove the ones you don't want to use for the test. You can remove a model variant by selecting it and then choosing Remove.
+5. If you do not already have a shadow variant, add a shadow variant. In the Add model dialog box, choose the model you want to use for your shadow variant.
+6. (Optional) In the preceding step, the shadow variant is added with the default settings. To modify these settings, select the shadow variant and choose Edit. The Edit shadow variant dialog box appears. For more information on filling out this dialog box, see Edit a shadow test.
+7. In the Schedule section, choose Duration, Start time, End time, and Date and choose Apply.
+8. (Optional) Turn on Enable data capture to save inference request and response information from your endpoint to an Amazon S3 bucket, and then enter the location of the Amazon S3 bucket.
+9. Choose Create shadow test.
+
+You can view the statuses of your shadow tests, monitor their progress from a dashboard, and perform actions, such as starting or stopping an test early or deleting an test. The following sections show how you can view and modify your shadow tests using the SageMaker console.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
