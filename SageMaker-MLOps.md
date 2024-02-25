@@ -294,6 +294,79 @@ schedule = model_quality_model_monitor.create_monitoring_schedule(
 ```
 
 ## Monitor Bias Drift for Models in Production
+Amazon SageMaker Clarify bias monitoring helps data scientists and ML engineers monitor predictions for bias on a regular basis. As the model is monitored, customers can view exportable reports and graphs detailing bias in SageMaker Studio and configure alerts in Amazon CloudWatch to receive notifications if bias beyond a certain threshold is detected. Bias can be introduced or exacerbated in deployed ML models when the training data differs from the data that the model sees during deployment (that is, the live data). These kinds of changes in the live data distribution might be temporary (for example, due to some short-lived, real-world events) or permanent. In either case, it might be important to detect these changes. For example, the outputs of a model for predicting home prices can become biased if the mortgage rates used to train the model differ from current, real-world mortgage rates. With bias detection capabilities in Model Monitor, when SageMaker detects bias beyond a certain threshold, it automatically generates metrics that you can view in SageMaker Studio and through Amazon CloudWatch alerts.
+
+### Create a Bias Drift Baseline
+After you have configured your application to capture real-time or batch transform inference data, the first task to monitor for bias drift is to create a baseline. This involves configuring the data inputs, which groups are sensitive, how the predictions are captured, and the model and its post-training bias metrics. Then you need to start the baselining job.
+
+```
+
+model_bias_monitor = ModelBiasMonitor(
+    role=role,
+    sagemaker_session=sagemaker_session,
+    max_runtime_in_seconds=1800,
+)
+```
+DataConfig stores information about the dataset to be analyzed (for example, the dataset file), its format (that is, CSV or JSON Lines), headers (if any) and label.
+```
+
+model_bias_baselining_job_result_uri = f"{baseline_results_uri}/model_bias"
+model_bias_data_config = DataConfig(
+    s3_data_input_path=validation_dataset,
+    s3_output_path=model_bias_baselining_job_result_uri,
+    label=label_header,
+    headers=all_headers,
+    dataset_type=dataset_type,
+)
+```
+BiasConfig is the configuration of the sensitive groups in the dataset. Typically, bias is measured by computing a metric and comparing it across groups. The group of interest is called the facet. For post-training bias, you should also take the positive label into account.
+```
+model_bias_config = BiasConfig(
+    label_values_or_threshold=[1],
+    facet_name="Account Length",
+    facet_values_or_threshold=[100],
+)
+```
+ModelPredictedLabelConfig specifies how to extract a predicted label from the model output. In this example, the 0.8 cutoff has been chosen in anticipation that customers will turn over frequently. For more complicated outputs, there are a few more options, like "label" is the index, name, or JMESPath to locate predicted label in endpoint response payload.
+```
+model_predicted_label_config = ModelPredictedLabelConfig(
+    probability_threshold=0.8,
+)
+```
+ModelConfig is the configuration related to the model to be used for inferencing. In order to compute post-training bias metrics, the computation needs to get inferences for the model name provided. To accomplish this, the processing job uses the model to create an ephemeral endpoint (also known as shadow endpoint). The processing job deletes the shadow endpoint after the computations are completed. This configuration is also used by the explainability monitor.
+
+```
+model_config = ModelConfig(
+    model_name=model_name,
+    instance_count=endpoint_instance_count,
+    instance_type=endpoint_instance_type,
+    content_type=dataset_type,
+    accept_type=dataset_type,
+)
+```
+Now you can start the baselining job.
+```
+model_bias_monitor.suggest_baseline(
+    model_config=model_config,
+    data_config=model_bias_data_config,
+    bias_config=model_bias_config,
+    model_predicted_label_config=model_predicted_label_config,
+)
+print(f"ModelBiasMonitor baselining job: {model_bias_monitor.latest_baselining_job_name}")
+```
+## Monitor Feature Attribution Drift for Models in Production
+A drift in the distribution of live data for models in production can result in a corresponding drift in the feature attribution values, just as it could cause a drift in bias when monitoring bias metrics. Amazon SageMaker Clarify feature attribution monitoring helps data scientists and ML engineers monitor predictions for feature attribution drift on a regular basis. As the model is monitored, customers can view exportable reports and graphs detailing feature attributions in SageMaker Studio and configure alerts in Amazon CloudWatch to receive notifications if it is detected that the attribution values drift beyond a certain threshold.
+
+To illustrate this with a specific situation, consider a hypothetical scenario for college admissions. Assume that we observe the following (aggregated) feature attribution values in the training data and in the live data:
+
+| Feature    | Attribution in training data | Attribution in live data |
+|------------|------------------------------|--------------------------|
+| SAT score  | 0.70                         | 0.10                     |
+| GPA        | 0.50                         | 0.20                     |
+| Class rank | 0.05                         | 0.70                     |
+
+
+
 
 
 
