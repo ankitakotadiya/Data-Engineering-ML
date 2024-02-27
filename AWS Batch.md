@@ -68,6 +68,58 @@ AWS Batch job definitions specify how jobs are to be run. Even though each job m
 
 Follow the same steps for EKS and Fargate just select EKS or Fargate orchestration.
 
+## Jobs
+Jobs are the unit of work that's started by AWS Batch. Jobs can be invoked as containerized applications that run on Amazon ECS container instances in an ECS cluster.
+
+### Submitting a job
+After you register a job definition, you can submit it as a job to an AWS Batch job queue. You can override many of the parameters that are specified in the job definition at runtime.
+
+1. Open the [AWS Batch console](https://console.aws.amazon.com/batch/).
+2. From the navigation bar, select the AWS Region to use.
+3. In the navigation pane, choose Jobs.
+4. Choose Submit new job.
+5. For Name, enter a unique name for your job definition. The name can be up to 128 characters in length. It can contain uppercase and lowercase letters, numbers, hyphens (-), and underscores (_).
+6. For Job definition, choose an existing job definition for your job. For more information, see Job defination we have created in previous step.
+7. For Job queue, choose an existing job queue. For more information, see Creating a job queue in previous steps.
+8. For Job dependencies, choose Add Job dependencies.
+   * For Job id, enter the job ID for any dependencies. Then choose Add job dependencies. A job can have up to 20 dependencies.
+9. (Array jobs only) For Array size, specify an array size between 2 and 10,000.
+10. (Optional) Expand Tags and then choose Add tag to add tags to the resource. Enter a key and optional value, then choose Add tag.
+11. Choose Next page.
+12. In the Job overrides section:
+    * (Optional) For Scheduling priority, enter a scheduling priority value between 0 and 100. Higher values are given higher priority.
+    * (Optional) For Job attempts, enter the maximum number of times that AWS Batch attempts to move the job to a RUNNABLE status. You can enter a number between 1 and 10. For more information, see [Automated job retries](https://docs.aws.amazon.com/batch/latest/userguide/job_retries.html).
+    * (Optional) For Execution timeout, enter the timeout value (in seconds). The execution timeout is the length of time before an unfinished job is terminated. If an attempt exceeds the timeout duration, it's stopped and moves to a FAILED status. For more information, see [Job timeouts](https://docs.aws.amazon.com/batch/latest/userguide/job_timeouts.html). The minimum value is 60 seconds.
+    * (Optional) Turn on Propagate tags to propagate tags from the job and job definition to the Amazon ECS task.
+13. Expand Additional configuration.
+14. (Optional) For Retry strategy conditions, choose Add evaluate on exit. Enter at least one parameter value and then choose an Action. For each set of conditions, Action must be set to either Retry or Exit. These actions mean the following:
+    * Retry – AWS Batch retries until the number of job attempts that you specified is reached.
+    * Exit – AWS Batch stops retrying the job.
+15. For Parameters, choose Add parameters to add parameter substitution placeholders. Then, enter a Key and an optional Value.
+16. In the Container overrides section:
+    * For Command, specify the command to pass to the container.
+    * For vCPUs, enter the number of vCPUs to reserve for the container.
+    * For Memory, enter the memory limit that's available to the container.
+    * (Optional) For Number of GPUs, choose the number of GPUs to reserve for the container.
+    * Optional) For Environment variables, choose Add environment variable to add environment variables as name-value pairs.
+    * Choose Next page.
+17. For Job review, review the configuration steps. If you need to make changes, choose Edit. When you're finished, choose Create job definition.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
