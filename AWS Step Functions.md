@@ -71,6 +71,30 @@ So far you’ve learned how to run workflows in a sequential manner. However, yo
    * For Payload, choose Enter payload and then replace the example payload if you wish.
 4. Follow the same steps for next task.
 
+<img width="1114" alt="Screenshot 2024-02-28 at 3 04 06 PM" src="https://github.com/ankitakotadiya/Data-Engineering-ML/assets/27961132/3a664631-009f-412a-b205-b4287e8bff1d">
+
+In the previous tutorial, you learned how to run separate branches of steps in parallel using the Parallel state. Using the Map state, you can run a set of workflow steps for each item in a dataset. The Map state's iterations run in parallel, which makes it possible to process a dataset quickly.
+
+By including the Map state in your workflows you can perform tasks, such as data processing, using one of the two Map state processing modes: Inline mode and Distributed mode. To configure a Map state, you define an ItemProcessor, which contains JSON objects that specify the Map state processing mode and its definition. In this tutorial, you run the Map state in the default Inline mode, which supports up to 40 concurrent iterations. When you run the Map state in Distributed mode, it supports up to 10,000 parallel child workflow executions.
+
+When your workflow execution enters the Map state, it will iterate over a JSON array specified in the state input. For each array item, its corresponding iteration runs in the context of the workflow that contains the Map state. When all iterations are complete, the Map state will return an array containing the output for each item processed by the ItemProcessor.
+
+## Use Cases
+AWS Step Functions lets you build visual workflows that help rapidly translate business requirements into applications. Step Functions manages state, checkpoints and restarts for you, and provides built-in capabilities to automatically deal with errors and exceptions. To better understand the capabilities Step Functions can provide you with, read through the following use cases:
+
+### Data Processing
+As the volume of data grows, coming from increasingly diverse sources, organizations find they need to move quickly to process this data to ensure they make faster, well-informed business decisions. To process data at scale, organizations need to elastically provision resources to manage the information they receive from mobile devices, applications, satellites, marketing and sales, operational data stores, infrastructure, and more.
+
+Step Functions provides the scalability, reliability, and availability needed to successfully manage your data processing workflows. You can manage millions of concurrent executions with Step Functions as it scales horizontally and provides fault-tolerant workflows. Process data faster using parallel executions like Step Functions’ Parallel state type, or dynamic parallelism using its Map state type. As part of your workflow, you can use the Map state to iterate over objects in a static data store like an Amazon S3 bucket. Step Functions also lets you easily retry failed executions, or choose a specific way to handle errors without the need to manage a complex process.
+
+### Machine Learning
+Step Functions lets you to orchestrate end-to-end machine learning workflows on SageMaker. These workflows can include data preprocessing, post-processing, feature engineering, data validation, and model evaluation. Once the model has been deployed to production, you can refine and test new approaches to continually improve business outcomes. You can create production-ready workflows directly in Python, or you can use the Step Functions Data Science SDK to copy that workflow, experiment with new options, and place the refined workflow in production.
+
+### Microservice orchestration
+Step Functions gives you several ways to manage your microservice workflows. For long-running workflows you can use Standard Workflows with the AWS Fargate integration to orchestrate applications running in containers. For short-duration, high-volume workflows that require an immediate response, Synchronous Express Workflows are ideal. These can be used for web-based or mobile applications, which often have workflows of short duration, and require the completion of a series of steps before they return a response. You can directly trigger a Synchronous Express Workflows from Amazon API Gateway, and the connection is held open until the workflow completes or timeouts. For short duration workflows that do not require an immediate response, Step Functions provides Asynchronous Express Workflows.
+
+
+
 
 
 
