@@ -66,22 +66,111 @@ Amazon ECS task definitions use Docker images to launch containers on the contai
 
 ### Push your image to Amazon Elastic Container Registry
 1. Create an Amazon ECR repository to store your hello-world image. Note the repositoryUri in the output.
-
-  ```
-  aws ecr create-repository --repository-name hello-repository --region region
-  ```
-2. Tag the hello-world image with the repositoryUri value from the previous step.
+   ```
+   aws ecr create-repository --repository-name hello-repository --region region
+   ```
+3. Tag the hello-world image with the repositoryUri value from the previous step.
    ```
    docker tag hello-world aws_account_id.dkr.ecr.region.amazonaws.com/hello-repository
    ```
-3. Run the aws ecr get-login-password command. Specify the registry URI you want to authenticate to. For more information, see Registry Authentication in the Amazon Elastic Container Registry User Guide.
+4. Run the aws ecr get-login-password command. Specify the registry URI you want to authenticate to. For more information, see Registry Authentication in the Amazon Elastic Container Registry User Guide.
    ```
    aws ecr get-login-password --region region | docker login --username AWS --password-stdin aws_account_id.dkr.ecr.region.amazonaws.com
    ```
-4. Push the image to Amazon ECR with the repositoryUri value from the earlier step.
+5. Push the image to Amazon ECR with the repositoryUri value from the earlier step.
    ```
    docker push aws_account_id.dkr.ecr.region.amazonaws.com/hello-repository
    ```
+
+### Step 1: Create the cluster
+1. Open the [console](https://console.aws.amazon.com/ecs/v2).
+2. From the navigation bar, select the Region to use.
+3. In the navigation pane, choose Clusters.
+4. On the Clusters page, choose Create cluster.
+5. Under Cluster configuration, for Cluster name, enter a unique name.
+6. (Optional) To turn on Container Insights, expand Monitoring, and then turn on Use Container Insights.
+7. (Optional) To help identify your cluster, expand Tags, and then configure your tags.
+8. Choose Create.
+
+### Step 2: Create a task definition
+A task definition is like a blueprint for your application. Each time you launch a task in Amazon ECS, you specify a task definition. The service then knows which Docker image to use for containers, how many containers to use in the task, and the resource allocation for each container.
+
+1. In the navigation pane, choose Task Definitions.
+2. Choose Create new Task Definition, Create new revision with JSON.
+3. Copy and paste the following example task definition into the box and then choose Save.
+   ```
+   {
+    "family": "sample-fargate", 
+    "networkMode": "awsvpc", 
+    "containerDefinitions": [
+        {
+            "name": "fargate-app", 
+            "image": "public.ecr.aws/docker/library/httpd:latest", 
+            "portMappings": [
+                {
+                    "containerPort": 80, 
+                    "hostPort": 80, 
+                    "protocol": "tcp"
+                }
+            ], 
+            "essential": true, 
+            "entryPoint": [
+                "sh",
+		"-c"
+            ], 
+            "command": [
+                "/bin/sh -c \"echo '<html> <head> <title>Amazon ECS Sample App</title> <style>body {margin-top: 40px; background-color: #333;} </style> </head><body> <div style=color:white;text-align:center> <h1>Amazon ECS Sample App</h1> <h2>Congratulations!</h2> <p>Your application is now running on a container in Amazon ECS.</p> </div></body></html>' >  /usr/local/apache2/htdocs/index.html && httpd-foreground\""
+            ]
+        }
+    ], 
+    "requiresCompatibilities": [
+        "FARGATE"
+    ], 
+    "cpu": "256", 
+    "memory": "512"
+   }
+   ```
+4. Choose Create.
+
+### Step 3: Create the service
+
+1. In the navigation pane, choose Clusters, and then select the cluster you created in Step 1: Create the cluster.
+2. From the Services tab, choose Create.
+3. Under Deployment configuration, specify how your application is deployed.
+   * For Task definition, choose the task definition you created in Step 2: Create a task definition.
+   * For Service name, enter a name for your service.
+   * For Desired tasks, enter 1.
+4. Under Networking, you can create a new security group or choose an existing security group for your task. Ensure that the security group you use has the inbound rule listed under Prerequisites.
+5. Choose Create.
+
+### Step 4: View your service
+1. Open the [console](https://console.aws.amazon.com/ecs/v2).
+2. In the navigation pane, choose Clusters.
+3. Choose the cluster where you ran the service.
+4. In the Services tab, under Service name, choose the service you created in Step 3: Create the service.
+5. Choose the Tasks tab, and then choose the task in your service.
+6. On the task page, in the Configuration section, under Public IP, choose Open address.
+
+### Create Cluster using EC2
+1. To add Amazon EC2 instances to your cluster, expand Infrastructure, and then select Amazon EC2 instances. Next, configure the Auto Scaling group which acts as the capacity provider:
+   * To using an existing Auto Scaling group, from Auto Scaling group (ASG), select the group.
+   * To create a Auto Scaling group, from Auto Scaling group (ASG), select Create new group.
+   * For Operating system/Architecture, choose the Amazon ECS-optimized AMI for the Auto Scaling group instances.
+   * For EC2 instance type, choose the instance type for your workloads. For more information about the different instance types, see Amazon EC2 Instances.
+   * Managed scaling works best if your Auto Scaling group uses the same or similar instance types.
+   * For SSH key pair, choose the pair that proves your identity when you connect to the instance.
+   * For Capacity, enter the minimum number and the maximum number of instances to launch in the Auto Scaling group. Amazon EC2 instances incur costs while they exist in your AWS resources.
+   * Apply additional settings based on your requirements and choose create cluster.
+
+
+
+
+
+
+
+
+
+
 
 
 
