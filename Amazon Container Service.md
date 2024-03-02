@@ -162,6 +162,106 @@ A task definition is like a blueprint for your application. Each time you launch
    * For Capacity, enter the minimum number and the maximum number of instances to launch in the Auto Scaling group. Amazon EC2 instances incur costs while they exist in your AWS resources.
    * Apply additional settings based on your requirements and choose create cluster.
 
+## Amazon EKS
+Amazon Elastic Kubernetes Service (Amazon EKS) is a managed service that eliminates the need to install, operate, and maintain your own Kubernetes control plane on Amazon Web Services (AWS). Kubernetes is an open-source system that automates the management, scaling, and deployment of containerized applications.
+
+### Features of Amazon EKS
+* Secure networking and authentication
+* Easy cluster scaling
+* Managed Kubernetes experience
+* High availability
+* Integration with AWS services
+
+### Get started with Amazon EKS
+* Create a cluster – Start by creating your cluster using eksctl, AWS Management Console, AWS CLI, or one of the AWS SDKs.
+* Choose your approach to compute resources – Decide between AWS Fargate, Karpenter, managed node groups, and self-managed nodes.
+* Setup – Set up the necessary controllers, drivers, and services.
+* Deploy workloads – Tailor your Kubernetes workloads to best utilize the resources and capabilities of your chosen node type.
+* Management – Oversee your workloads, integrating AWS services to streamline operations and enhance workload performance. You can view information about your workloads using the AWS Management Console.
+
+<img width="839" alt="what-is-eks" src="https://github.com/ankitakotadiya/Data-Engineering-ML/assets/27961132/68df3dff-1a6f-4922-a66b-fcd7b3da4cab">
+
+### Setting up to use Amazon EKS
+1. Generate Security credentials for IAM user.
+2. Configure AWS CLI.
+3. Installing or updating kubectl
+
+```
+curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/1.29.0/2024-01-04/bin/darwin/amd64/kubectl
+
+#Apply execute permissions to the binary.
+chmod +x ./kubectl
+
+#Copy the binary to a folder in your PATH. If you have already installed a version of kubectl, then we recommend creating a $HOME/bin/kubectl and ensuring that $HOME/bin comes first in your $PATH.
+mkdir -p $HOME/bin && cp ./kubectl $HOME/bin/kubectl && export PATH=$HOME/bin:$PATH
+
+#(Optional) Add the $HOME/bin path to your shell initialization file so that it is configured when you open a shell.
+echo 'export PATH=$HOME/bin:$PATH' >> ~/.bash_profile
+```
+
+When first installing kubectl, it isn't yet configured to communicate with any server. We will cover this configuration as needed in other procedures. If you ever need to update the configuration to communicate with a particular cluster, you can run the following command. Replace region-code with the AWS Region that your cluster is in. Replace my-cluster with the name of your cluster.
+
+```
+aws eks update-kubeconfig --region region-code --name my-cluster
+
+```
+
+kubectl – A command line tool for working with Kubernetes clusters.
+eksctl – A command line tool for working with EKS clusters that automates many individual tasks. 
+
+### Create your Amazon EKS cluster and nodes
+```
+eksctl create cluster --name my-cluster --region region-code --fargate
+
+```
+
+### To create your cluster from AWS Console
+1. Open the [Amazon EKS console](https://console.aws.amazon.com/eks/home#/clusters).
+2. Choose Add cluster, and then choose Create. If you don't see this option, then choose Clusters in the left navigation pane first.
+3. On the Configure cluster page, do the following:
+   * Enter a Name for your cluster, such as my-cluster.
+   * For Cluster Service Role, choose myAmazonEKSClusterRole.
+   * Leave the remaining settings at their default values and choose Next.
+4. On the Specify networking page, do the following:
+   * Choose the ID of the VPC that you created in a previous step from the VPC dropdown list. It is something like vpc-00x0000x000x0x000 | my-eks-vpc-stack-VPC.
+   * Leave the remaining settings at their default values and choose Next.
+5. On the Configure observability page, choose Next.
+6. On the Select add-ons page, choose Next.
+7. On the Configure selected add-ons settings page, choose Next.
+8. On the Review and create page, choose Create.
+
+### To create Nodes
+1. Open the [Amazon EKS console](https://console.aws.amazon.com/eks/home#/clusters).
+2. On the Clusters page, choose the my-cluster cluster.
+3. On the my-cluster page, do the following:
+   * Choose the Compute tab.
+   * Under Fargate Profiles, choose Add Fargate Profile.
+4. On the Configure Fargate Profile page, do the following:
+   * For Name, enter a unique name for your Fargate profile, such as my-profile.
+   * For Pod execution role, choose the AmazonEKSFargatePodExecutionRole that you created in a previous step.
+   * Choose the Subnets dropdown and deselect any subnet with Public in its name. Only private subnets are supported for Pods that are running on Fargate.
+   * Choose Next.
+5. On the Configure Pod selection page, do the following:
+   * For Namespace, enter default.
+   * Choose Next.
+6. On the Review and create page, review the information for your Fargate profile and choose Create.
+7. After a few minutes, the Status in the Fargate Profile configuration section will change from Creating to Active. Don't continue to the next step until the status is Active.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
