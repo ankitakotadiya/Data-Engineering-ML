@@ -59,6 +59,50 @@ After you create the file system, you can customize the file system's settings w
 11. Choose Launch.
 
 
+## Amazon FSx
+The Amazon FSx family of services makes it easy to launch, run, and scale shared storage powered by popular commercial and open-source file systems. You can use the new launch instance wizard to automatically attach the following types of Amazon FSx file systems to your Amazon EC2 instances at launch:
+
+* Amazon FSx for NetApp ONTAP provides fully managed shared storage in the AWS Cloud with the popular data access and management capabilities of NetApp ONTAP.
+* Amazon FSx for OpenZFS provides fully managed cost-effective shared storage powered by the popular OpenZFS file system.
+
+### Step 1: Create your file system
+1. Open the Amazon FSx console at https://console.aws.amazon.com/fsx/.
+2. On the dashboard, choose Create file system to start the file system creation wizard.
+3. On the Select file system type page, choose FSx for Windows File Server, and then choose Next. The Create file system page appears.
+4. In the File system details section, provide a name for your file system. It's easier to find and manage your file systems when you name them. You can use a maximum of 256 Unicode letters, white space, and numbers, plus the special characters + - = . _ : /
+
+<img width="606" alt="CreateFSxWindow-details" src="https://github.com/ankitakotadiya/Data-Engineering-ML/assets/27961132/3d0517c0-6303-4c7c-bd73-4ecee7c34efe">
+
+5. For Deployment type choose Multi-AZ or Single-AZ.
+   * Choose Multi-AZ to deploy a file system that is tolerant to Availability Zone unavailability. This option supports SSD and HDD storage.
+   * Choose Single-AZ to deploy a file system that is deployed in a single Availability Zone. Single-AZ 2 is the latest generation of single Availability Zone file systems, and it supports SSD and HDD storage.
+6. For Storage type, you can choose either SSD or HDD.
+7. For Provisioned SSD IOPS, you can choose either Automatic or User-provisioned mode.
+8. For Storage capacity, enter the storage capacity of your file system, in GiB. If you're using SSD storage, enter any whole number in the range of 32–65,536. If you're using HDD storage, enter any whole number in the range of 2,000–65,536. You can increase the amount of storage capacity as needed at any time after you create the file system. For more information, see Managing storage capacity.
+9. Keep Throughput capacity at its default setting. Throughput capacity is the sustained speed at which the file server that hosts your file system can serve data. The Recommended throughput capacity setting is based on the amount of storage capacity you choose. If you need more than the recommended throughput capacity, choose Specify throughput capacity, and then choose a value. For more information, see FSx for Windows File Server performance.
+10. In the Network & security section, choose the Amazon VPC that you want to associate with your file system. For this getting started exercise, choose the same Amazon VPC that you chose for your AWS Directory Service directory and your Amazon EC2 instance.
+11. For VPC Security Groups, the default security group for your default Amazon VPC is already added to your file system in the console. If you're not using the default security group, make sure that the security group you choose is in the same AWS Region as your file system.
+12. If you have a Multi-AZ deployment (see step 5), choose a Preferred subnet value for the primary file server and a Standby subnet value for the standby file server. A Multi-AZ deployment has a primary and a standby file server, each in its own Availability Zone and subnet.
+13. For Windows authentication, you have the following options:
+    If you want to join your file system to a Microsoft Active Directory domain that is managed by AWS, choose AWS Managed Microsoft Active Directory, and then choose your AWS Directory Service directory from the list.
+14. For Encryption, keep the default Encryption key setting of aws/fsx (default).
+15. For Auditing - optional, file access auditing is disabled by default. For information about enabling and configuring file access auditing.
+16. For Access - optional, enter any DNS aliases that you want to associate with the file system. Each alias name must be formatted as a fully qualified domain name (FQDN).
+17. For Backup and maintenance - optional, keep the default settings.
+18. For Tags - optional, enter a key and value to add tags to your file system. A tag is a case-sensitive key-value pair that helps you manage, filter, and search for your file system.
+19. Review the file system configuration shown on the Create file system page. For your reference, note which file system settings you can modify after file system is created. Choose Create file system.
+20. After Amazon FSx creates the file system, choose the file system ID in the File Systems dashboard. Choose Attach, and note the fully qualified domain name for your file system. You will need it in a later step.
+
+
+    
+
+
+
+
+
+
+
+
 
 
 
