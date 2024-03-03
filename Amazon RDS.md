@@ -22,3 +22,101 @@ In some cases, your database workload might not be able to achieve 100 percent o
 ### Blue/Green Deployments
 A blue/green deployment copies a production database environment in a separate, synchronized staging environment. By using Amazon RDS Blue/Green Deployments, you can make changes to the database in the staging environment without affecting the production environment. For example, you can upgrade the major or minor DB engine version, change database parameters, or make schema changes in the staging environment. When you are ready, you can promote the staging environment to be the new production database environment. For more information, see Using Amazon RDS Blue/Green Deployments for database updates.
 
+### Cross-Region automated backups
+By using backup replication in Amazon RDS, you can configure your RDS DB instance to replicate snapshots and transaction logs to a destination Region. When backup replication is configured for a DB instance, RDS starts a cross-Region copy of all snapshots and transaction logs when they're ready.
+
+### Cross-Region read replicas
+By using cross-Region read replicas in Amazon RDS, you can create a MariaDB, MySQL, Oracle, PostgreSQL, or SQL Server read replica in a different Region from the source DB instance.
+
+### Database activity streams
+By using Database Activity Streams in Amazon RDS, you can monitor and set alarms for auditing activity in your Oracle database and SQL Server database. 
+
+Database activity streams aren't available with the following engines:
+* RDS for Db2
+* RDS for MariaDB
+* RDS for MySQL
+* RDS for PostgreSQL
+
+### Dual-stack mode
+By using dual-stack mode in RDS, resources can communicate with a DB instance over Internet Protocol version 4 (IPv4), Internet Protocol version 6 (IPv6), or both. 
+
+### Export snapshots to S3
+You can export RDS DB snapshot data to an Amazon S3 bucket. You can export all types of DB snapshots—including manual snapshots, automated system snapshots, and snapshots created by AWS Backup. After the data is exported, you can analyze the exported data directly through tools like Amazon Athena or Amazon Redshift Spectrum.
+
+Exporting snapshots to S3 is not available for the following engines:
+
+* RDS for Db2
+* RDS for Oracle
+* RDS for SQL Server
+
+### IAM database authentication
+By using IAM database authentication in Amazon RDS, you can authenticate without a password when you connect to a DB instance. Instead, you use an authentication token.
+
+### Kerberos authentication
+By using Kerberos authentication in Amazon RDS, you can support external authentication of database users using Kerberos and Microsoft Active Directory. Using Kerberos and Active Directory provides the benefits of single sign-on and centralized authentication of database users. This feature is not available for MariaDB.
+
+### Multi-AZ DB clusters
+A Multi-AZ DB cluster deployment in Amazon RDS provides a high availability deployment mode of Amazon RDS with two readable standby DB instances. A Multi-AZ DB cluster has a writer DB instance and two reader DB instances in three separate Availability Zones in the same Region. Multi-AZ DB clusters provide high availability, increased capacity for read workloads, and lower write latency when compared to Multi-AZ DB instance deployments.
+
+Multi-AZ DB clusters aren't available with the following engines:
+
+* RDS for Db2
+* RDS for MariaDB
+* RDS for Oracle
+* RDS for SQL Server
+
+### Performance Insights
+Performance Insights in Amazon RDS expands on existing Amazon RDS monitoring features to illustrate and help you analyze your database performance. With the Performance Insights dashboard, you can visualize the database load on your Amazon RDS DB instance. You can also filter the load by waits, SQL statements, hosts, or users. 
+
+### RDS Custom
+Amazon RDS Custom automates database administration tasks and operations. By using RDS Custom, as a database administrator you can access and customize your database environment and operating system. With RDS Custom, you can customize to meet the requirements of legacy, custom, and packaged applications. 
+
+### Amazon RDS Proxy
+Amazon RDS Proxy is a fully managed, highly available database proxy that makes applications more scalable by pooling and sharing established database connections.
+
+### Secrets Manager integration
+With AWS Secrets Manager, you can replace hard-coded credentials in your code, including database passwords, with an API call to Secrets Manager to retrieve the secret programmatically.
+
+### Zero-ETL integrations with Amazon Redshift
+RDS Zero-ETL integrations with Amazon Redshift is a fully managed solution for making transactional data available in Amazon Redshift after it's written to an Amazon RDS DB instance.
+
+### Engine-native features
+Amazon RDS database engines also support many of the most common engine-native features and functionality. These features are different than the Amazon RDS-native features listed on this page. Some engine-native features might have limited support or restricted privileges.
+
+### To create a DB instance
+1. Sign in to the AWS Management Console and open the [Amazon RDS console](https://console.aws.amazon.com/rds/).
+2. In the upper-right corner of the Amazon RDS console, choose the AWS Region in which you want to create the DB instance.
+3. In the navigation pane, choose Databases.
+4. Choose Create database, then choose Standard create.
+5. For Engine type, choose IBM Db2, MariaDB, Microsoft SQL Server, MySQL, Oracle, or PostgreSQL.
+   Microsoft SQL Server is shown here.
+
+   ![create-instance-sqlserver](https://github.com/ankitakotadiya/Data-Engineering-ML/assets/27961132/0790b6c1-2459-4f7a-9a87-ca9d4b8afe29)
+
+6. For Database management type, if you're using Oracle or SQL Server choose Amazon RDS or Amazon RDS Custom.
+7. For Edition, if you're using Db2, Oracle, or SQL Server, choose the DB engine edition that you want to use.
+8. For Version, choose the engine version.
+9. In Templates, choose the template that matches your use case. If you choose Production, the following are preselected in a later step:
+   * Multi-AZ failover option
+   * Provisioned IOPS SSD (io1) storage option
+   * Enable deletion protection option
+10. To enter your master password, do the following:
+    * In the Settings section, open Credential Settings.
+    * If you want to specify a password, clear the Auto generate a password check box if it is selected.
+    * (Optional) Change the Master username value.
+    * Enter the same password in Master password and Confirm password.
+11. (Optional) Set up a connection to a compute resource for this DB instance.
+    You can configure connectivity between an Amazon EC2 instance and the new DB instance during DB instance creation.
+12. In the Connectivity section under VPC security group (firewall), if you select Create new, a VPC security group is created with an inbound rule that allows your local computer's IP address to access the database.
+13. For the remaining sections, specify your DB instance settings.
+14. Choose Create database.
+
+
+
+
+
+
+
+
+
+
