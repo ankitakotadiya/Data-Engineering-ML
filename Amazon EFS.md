@@ -93,7 +93,36 @@ The Amazon FSx family of services makes it easy to launch, run, and scale shared
 19. Review the file system configuration shown on the Create file system page. For your reference, note which file system settings you can modify after file system is created. Choose Create file system.
 20. After Amazon FSx creates the file system, choose the file system ID in the File Systems dashboard. Choose Attach, and note the fully qualified domain name for your file system. You will need it in a later step.
 
+### Step 2: Map your file share to an EC2 instance running Windows Server
+1. Before you can mount a file share on a Windows instance, you must launch the EC2 instance and join it to an AWS Directory Service for Microsoft Active Directory. To perform this action, choose one of the following procedures from the AWS Directory Service Administration Guide:
+   * [Seamlessly Join a Windows EC2 Instance](https://docs.aws.amazon.com/directoryservice/latest/admin-guide/launching_instance.html)
+   * [Manually Join a Windows Instance](https://docs.aws.amazon.com/directoryservice/latest/admin-guide/join_windows_instance.html)
+2. Connect to your instance.
+3. When you're connected, open File Explorer.
+4. From the navigation pane, open the context (right-click) menu for Network and choose Map Network Drive.
+5. Choose a drive letter of your choice for Drive.
+6. You can map your file system using either its default DNS name assigned by Amazon FSx, or using a DNS alias of your choosing. This procedure describes mapping a file share using the default DNS name.
+7. Choose whether the file share should Reconnect at sign-in, and then choose Finish.
 
+### Step 3: Write data to your file share
+1. Open the Notepad text editor.
+2. Write some content in the text editor. For example: Hello, World!
+3. Save the file to your file share's drive letter.
+4. Using File Explorer, navigate to your file share and find the text file that you just saved.
+
+### Step 4: Back up your file system
+1. Open the Amazon FSx console at https://console.aws.amazon.com/fsx/.
+2. From the console dashboard, choose the name of the file system you created for this exercise.
+3. From the Overview tab for your file system, choose Create backup.
+4. In the Create backup dialog box that opens, provide a name for your backup. This name can contain a maximum of 256 Unicode letters and include white space, numbers, and the following special characters: + - = . _ : /
+5. Choose Create backup.
+6. To view all your backups in a list, so you can restore your file system or delete the backup, choose Backups.
+
+
+
+
+
+      
     
 
 
