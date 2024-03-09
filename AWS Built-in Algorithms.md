@@ -41,3 +41,17 @@ The following table lists parameters for each of the algorithms provided by Amaz
 |image/png                                                                                                              |Object Detection Algorithm, Semantic Segmentation|
 |text/csv                                                                                                               |IP Insights, K-Means, k-NN, Latent Dirichlet Allocation, Linear Learner, NTM, PCA, RCF, XGBoost|
 |text/libsvm                                                                                                            |XGBoost                                          |
+
+
+## Tabular
+Amazon SageMaker provides built-in algorithms that are tailored to the analysis of tabular data. Tabular data refers to any datasets that are organized in tables consisting of rows (observations) and columns (features). The built-in SageMaker algorithms for tabular data can be used for either classification or regression problems.
+
+### AutoGluon
+AutoGluon-Tabular is a popular open-source AutoML framework that trains highly accurate machine learning models on an unprocessed tabular dataset. Unlike existing AutoML frameworks that primarily focus on model and hyperparameter selection, AutoGluon-Tabular succeeds by ensembling multiple models and stacking them in multiple layers.
+
+AutoGluon-Tabular performs advanced data processing, deep learning, and multi-layer model ensemble methods. It automatically recognizes the data type in each column for robust data preprocessing, including special handling of text fields.
+
+AutoGluon fits various models ranging from off-the-shelf boosted trees to customized neural networks. These models are ensembled in a novel way: models are stacked in multiple layers and trained in a layer-wise manner that guarantees raw data can be translated into high-quality predictions within a given time constraint. This process mitigates overfitting by splitting the data in various ways with careful tracking of out-of-fold examples.
+
+The AutoGluon-Tabular algorithm performs well in machine learning competitions because of its robust handling of a variety of data types, relationships, and distributions. You can use AutoGluon-Tabular for regression, classification (binary and multiclass), and ranking problems.
+
