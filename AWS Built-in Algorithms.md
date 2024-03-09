@@ -27,3 +27,17 @@ The following table lists parameters for each of the algorithms provided by Amaz
 |TabTransformer                                |training and (optionally) validation                                                               |File               |CSV                                                          |CPU or GPU (single instance only)                            |No                                                  |
 |Text Classification - TensorFlow              |training and validation                                                                            |File               |CSV                                                          |CPU or GPU                                                   |Yes (only across multiple GPUs on a single instance)|
 |XGBoost (0.90-1, 0.90-2, 1.0-1, 1.2-1, 1.2-21)|train and (optionally) validation                                                                  |File or Pipe       |CSV, LibSVM, or Parquet                                      |CPU (or GPU for 1.2-1)                                       |Yes                                                 |
+
+
+## ContentTypes for Built-in Algorithms
+
+|ContentType                                                                                                            |Algorithm                                        |
+|-----------------------------------------------------------------------------------------------------------------------|-------------------------------------------------|
+|application/x-image                                                                                                    |Object Detection Algorithm, Semantic Segmentation|
+|application/x-recordio                                                                                                 |Object Detection Algorithm                       |
+|application/x-recordio-protobuf                                                                                        |Factorization Machines, K-Means, k-NN, Latent Dirichlet Allocation, Linear Learner, NTM, PCA, RCF, Sequence-to-Sequence|
+|application/jsonlines                                                                                                  |BlazingText, DeepAR                              |
+|image/jpeg                                                                                                             |Object Detection Algorithm, Semantic Segmentation|
+|image/png                                                                                                              |Object Detection Algorithm, Semantic Segmentation|
+|text/csv                                                                                                               |IP Insights, K-Means, k-NN, Latent Dirichlet Allocation, Linear Learner, NTM, PCA, RCF, XGBoost|
+|text/libsvm                                                                                                            |XGBoost                                          |
