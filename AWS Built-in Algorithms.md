@@ -180,3 +180,10 @@ Please find the example demo [here](https://github.com/ankitakotadiya/Data-Engin
 |mlp_dropout                                                                                                                       |Dropout rate applied to the FeedForward network within the encoder layers and the final MLP layers on top of Transformer encoders. Valid values: float, range: (0, 1). Default value: 0.1. |
 |frac_shared_embed                                                                                                                 |The fraction of embeddings shared by all the different categories for one particular column. Valid values: float, range: (0, 1). Default value: 0.25.                                      |
 
+
+### XGBoost Algorithm
+The XGBoost (eXtreme Gradient Boosting) is a popular and efficient open-source implementation of the gradient boosted trees algorithm. Gradient boosting is a supervised learning algorithm that attempts to accurately predict a target variable by combining an ensemble of estimates from a set of simpler and weaker models. The XGBoost algorithm performs well in machine learning competitions because of its robust handling of a variety of data types, relationships, distributions, and the variety of hyperparameters that you can fine-tune. You can use XGBoost for regression, classification (binary and multiclass), and ranking problems.
+
+Please find the example code [here](https://github.com/ankitakotadiya/Data-Engineering-ML/blob/main/SageMaker-Buit-in-Algorithms/xgboost_abalone_dist_script_mode.ipynb).
+
+[XGBoost Hyperparameters](https://docs.aws.amazon.com/sagemaker/latest/dg/xgboost_hyperparameters.html).
