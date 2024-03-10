@@ -147,6 +147,19 @@ We recommend training on a CPU instance (such as ml.m5.2xlarge) or on a GPU inst
 |index_type                |The type of index. Valid values: faiss.Flat, faiss.IVFFlat, faiss.IVFPQ. Default values: faiss.Flat                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 |mini_batch_size           |The number of observations per mini-batch for the data iterator. Default value: 5000                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 
+Please find the example demo [here](https://github.com/ankitakotadiya/Data-Engineering-ML/blob/main/SageMaker-Buit-in-Algorithms/k_nearest_neighbors_covtype.ipynb).
 
+### LightGBM
+LightGBM is a popular and efficient open-source implementation of the Gradient Boosting Decision Tree (GBDT) algorithm. GBDT is a supervised learning algorithm that attempts to accurately predict a target variable by combining an ensemble of estimates from a set of simpler and weaker models. LightGBM uses additional techniques to significantly improve the efficiency and scalability of conventional GBDT.
+
+Find the example notebook [here](https://github.com/ankitakotadiya/Data-Engineering-ML/blob/main/SageMaker-Buit-in-Algorithms/Amazon_Tabular_Regression_LightGBM_CatBoost.ipynb).
+
+
+### Linear Learner Algorithm
+Linear models are supervised learning algorithms used for solving either classification or regression problems. For input, you give the model labeled examples (x, y). x is a high-dimensional vector and y is a numeric label. For binary classification problems, the label must be either 0 or 1. For multiclass classification problems, the labels must be from 0 to num_classes - 1. For regression problems, y is a real number. The algorithm learns a linear function, or, for classification problems, a linear threshold function, and maps a vector x to an approximation of the label y.
+
+Please find the example demo [here](https://github.com/ankitakotadiya/Data-Engineering-ML/blob/main/SageMaker-Buit-in-Algorithms/linear_learner_mnist.ipynb).
+
+[Linear Learner Hyperparameters](https://docs.aws.amazon.com/sagemaker/latest/dg/ll_hyperparameters.html).
 
 
